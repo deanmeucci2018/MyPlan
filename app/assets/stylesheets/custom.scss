@@ -1,0 +1,84 @@
+//@import "bootstrap-sprockets";
+@import "bootstrap";
+
+input, textarea, select,  .uneditable-input {
+	border: 1px solid blue;
+	width: 70%;
+	margin-bottom: 15px;
+}
+
+input {
+	height: auto;
+}
+
+.image-size {
+  max-width: 30px;
+  max-height: 20px;
+}
+
+header{
+	background-image: none;
+	background:red;
+	height:55px;
+}
+
+#navlinks {
+	margin: 0; 
+	padding: 0.5em 3em;
+	background: red; 
+	color: #FFF;
+	font-size: 20px;
+	list-style: none;
+	text-align: center;
+	
+}
+
+#content { border: #E0162B 2px solid; background-color: white;}
+
+#page-body { background-color: white;}
+#navlinks li {
+	//float: left;
+	display: inline;
+	margin-right: 0.5em; 
+	padding-right: 0.75em;
+	//border-right: 1px solid #99C;
+	font-weight: bold;
+	color: blue;
+	text-align:center;
+}
+
+#navlinks_last li {
+	float: right;
+	display: inline;
+	margin-right: 0.5em; 
+	padding-right: 0.75em;
+	border-right: 0;
+	font-weight: bold;
+	color: blue;
+}
+
+footer{
+border-top: 1px solid grey;
+padding-top: 3px;
+background:red;
+}
+
+footer small {
+float: left;
+}
+
+footer ul {
+float: right;
+list-style: none;
+}
+
+footer ul li {
+float: left;
+margin-left: 15px;
+}
+
+#conversation-body {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 2em;
+}

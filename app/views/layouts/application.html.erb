@@ -1,14 +1,60 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>MyPlan</title>
+    <title><%= yield(:title) %></title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= yield %>
-  </body>
+ <body>
+      <header>
+        
+         <!-- ADD LOGO -->
+          <nav>
+            <ul id = "navlinks">
+              <li>Holder</li>
+              <li>Holder</li>
+              <!-- % if logged_in? % -->
+                <!-- link to user index -->
+                <li>Holder</li>
+                <li>Holder</li>
+                <li>Holder</li>
+                <li>Holder</li>
+                
+              <!-- % else % -->
+                <li>Holder</li>
+                
+              <!-- % end % -->
+             
+
+            </ul>
+          </nav>
+      </header>
+      
+
+
+
+	    
+      <div>
+      <% flash.each do |message_type, message| %>
+	        <div class= "alert alert-<%= message_type %>"><%=message %></div>
+	    <% end %>
+	    <%flash.clear%>
+        <%= yield %>
+        <footer class="footer">
+          <small>
+            Designed by: Dean Meucci
+          </small>
+          <nav>
+            <ul>
+              <li><%= link_to "About", '/static_pages/about' %></li>
+              <li><%= link_to "Contact", '/static_pages/contact' %></li>
+              <li><%= link_to "Help", '/static_pages/help' %></li>
+            </ul>
+          </nav>
+        </footer>
+      </div>
+    </body>
 </html>
