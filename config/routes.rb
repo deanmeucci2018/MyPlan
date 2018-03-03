@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  resources :users
+  
+  get 'sessions/new'
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+  
+  get 'users/new'
+  get   '/signup', to:   'users#new'
+
   get 'static_pages/help'
 
   get 'static_pages/about'

@@ -11,6 +11,7 @@ input {
 	height: auto;
 }
 
+
 .image-size {
   max-width: 30px;
   max-height: 20px;
@@ -36,6 +37,20 @@ header{
 #content { border: #E0162B 2px solid; background-color: white;}
 
 #page-body { background-color: white;}
+
+#main{
+    overflow:hidden;
+    padding-bottom: 0px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+#mainholder{
+	min-height: 100%;
+	width: 100%;
+}
+
+
 #navlinks li {
 	//float: left;
 	display: inline;
@@ -58,13 +73,13 @@ header{
 }
 
 footer{
-border-top: 1px solid grey;
-padding-top: 3px;
-background:red;
+border-top: 3px solid red;
+padding-top: 2px;
 }
 
 footer small {
 float: left;
+margin-left: 10px;
 }
 
 footer ul {
@@ -75,10 +90,6 @@ list-style: none;
 footer ul li {
 float: left;
 margin-left: 15px;
+margin-right: 10px;
 }
 
-#conversation-body {
-  max-height: 400px;
-  overflow-y: auto;
-  margin-bottom: 2em;
-}

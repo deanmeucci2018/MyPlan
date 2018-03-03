@@ -3,7 +3,6 @@
   <head>
     <title><%= yield(:title) %></title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -14,19 +13,16 @@
          <!-- ADD LOGO -->
           <nav>
             <ul id = "navlinks">
-              <li>Holder</li>
-              <li>Holder</li>
-              <!-- % if logged_in? % -->
+              <% if logged_in? %>
                 <!-- link to user index -->
-                <li>Holder</li>
-                <li>Holder</li>
-                <li>Holder</li>
-                <li>Holder</li>
-                
-              <!-- % else % -->
-                <li>Holder</li>
-                
-              <!-- % end % -->
+                <li><%= link_to "Profile", current_user %></li>
+                <li><%= link_to "Courses", "#" %></li>
+                <li><%= link_to "GamePlan", "#" %></li>
+                <li><%= link_to "Interests", "#" %></li>
+                <li><%= link_to "Log out", logout_path, method: :delete %></li>
+              <% else %>
+                <li><%= link_to "Log in", login_path %></li>
+              <% end %>
              
 
             </ul>
@@ -42,7 +38,15 @@
 	        <div class= "alert alert-<%= message_type %>"><%=message %></div>
 	    <% end %>
 	    <%flash.clear%>
-        <%= yield %>
+
+      <div id="mainholderr">
+        <div id="main">
+          <div class="container">
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+
         <footer class="footer">
           <small>
             Designed by: Dean Meucci

@@ -1,0 +1,46 @@
+<head>
+<style>
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+</style>
+</head>
+
+<div style="color:blue">
+<h1 style="color:blue">Users</h1>
+<table style="width:100%">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>View Profile</th>
+        <% if current_user.admin? %>
+        <th>Delete</th>
+        <%end%>
+    </tr>
+<% @users.each do | user | %>
+    <tr>
+        <td><%= user.student_first_name %> <%= user.student_last_name %></td>
+        <td><%= user.email %></td>
+        <td><%= link_to "Show", user %></td>
+        <% if current_user.admin? && !current_user?(user) %>
+            <td><%= link_to "delete", user, method:  :delete, data: {confirm: "you sure?"} %></td>
+        <% end %>
+
+
+    </tr>
+<% end %>
+</table>
+</div>
