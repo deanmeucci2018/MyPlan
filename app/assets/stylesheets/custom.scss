@@ -12,15 +12,15 @@ input {
 }
 
 
-.image-size {
-  max-width: 30px;
-  max-height: 20px;
+.mainLogo {
+  text-align: center;
 }
 
 header{
 	background-image: none;
-	background:red;
-	height:55px;
+	background: #414d66;
+	height: 75px;
+	margin-bottom: 70px;
 }
 
 #navlinks {
@@ -34,6 +34,7 @@ header{
 	
 }
 
+
 #content { border: #E0162B 2px solid; background-color: white;}
 
 #page-body { background-color: white;}
@@ -43,19 +44,23 @@ header{
     padding-bottom: 0px;
     margin-left: 10px;
     margin-right: 10px;
+
 }
 
 #mainholder{
 	min-height: 100%;
 	width: 100%;
+	//margin-top: 10px;
 }
 
 
 #navlinks li {
 	//float: left;
 	display: inline;
-	margin-right: 0.5em; 
-	padding-right: 0.75em;
+	margin-left: 0.5em; // centers navs over logo
+	padding-left: 0.75em; // same as above
+	margin-right: 0.5em; //0.5em
+	padding-right: 0.75em; //0.75em
 	//border-right: 1px solid #99C;
 	font-weight: bold;
 	color: blue;

@@ -9,10 +9,11 @@
 
  <body>
       <header>
-        
-         <!-- ADD LOGO -->
+                       <div class ="mainLogo"><%= image_tag("MyPlanLogoTransparent5.png", :alt => "logo", class: "mainLogo", :size => "200x75") %></div>
+
           <nav>
             <ul id = "navlinks">
+
               <% if logged_in? %>
                 <!-- link to user index -->
                 <li><%= link_to "Profile", current_user %></li>
