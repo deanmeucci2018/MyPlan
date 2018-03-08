@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  course_number: 1
+  course_full_name: MyString
+  course_description: MyText
+  course_credits: 9.99
+  q_req: false
+  w_req: false
+  s_req: false
+  ah_req: false
+  l_req: false
+  sm_req: false
+  ss_req: false
+  department: one
+
+two:
+  course_number: 1
+  course_full_name: MyString
+  course_description: MyText
+  course_credits: 9.99
+  q_req: false
+  w_req: false
+  s_req: false
+  ah_req: false
+  l_req: false
+  sm_req: false
+  ss_req: false
+  department: two

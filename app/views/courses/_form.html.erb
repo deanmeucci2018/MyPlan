@@ -1,0 +1,78 @@
+<%= form_with(model: course, local: true) do |form| %>
+  <% if course.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(course.errors.count, "error") %> prohibited this course from being saved:</h2>
+
+      <ul>
+      <% course.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :course_number %>
+    <%= form.number_field :course_number, id: :course_course_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :course_full_name %>
+    <%= form.text_field :course_full_name, id: :course_course_full_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :course_description %>
+    <%= form.text_area :course_description, id: :course_course_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :course_credits %>
+    <%= form.text_field :course_credits, id: :course_course_credits %>
+  </div>
+
+  <div class="field">
+    <%= form.label :q_req %>
+    <%= form.check_box :q_req, id: :course_q_req %>
+  </div>
+
+  <div class="field">
+    <%= form.label :w_req %>
+    <%= form.check_box :w_req, id: :course_w_req %>
+  </div>
+
+  <div class="field">
+    <%= form.label :s_req %>
+    <%= form.check_box :s_req, id: :course_s_req %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ah_req %>
+    <%= form.check_box :ah_req, id: :course_ah_req %>
+  </div>
+
+  <div class="field">
+    <%= form.label :l_req %>
+    <%= form.check_box :l_req, id: :course_l_req %>
+  </div>
+
+  <div class="field">
+    <%= form.label :sm_req %>
+    <%= form.check_box :sm_req, id: :course_sm_req %>
+  </div>
+
+  <div class="field">
+    <%= form.label :ss_req %>
+    <%= form.check_box :ss_req, id: :course_ss_req %>
+  </div>
+
+  <div class="field">
+    <%= form.label :dep_short_name %>
+    <%= form.select :department_id, @options %>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

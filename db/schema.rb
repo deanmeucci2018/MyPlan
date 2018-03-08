@@ -10,7 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180302221521) do
+ActiveRecord::Schema.define(version: 20180308221420) do
+
+  create_table "courses", force: :cascade do |t|
+    t.integer "course_number"
+    t.string "course_full_name"
+    t.text "course_description"
+    t.decimal "course_credits"
+    t.boolean "q_req"
+    t.boolean "w_req"
+    t.boolean "s_req"
+    t.boolean "ah_req"
+    t.boolean "l_req"
+    t.boolean "sm_req"
+    t.boolean "ss_req"
+    t.integer "department_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_courses_on_department_id"
+  end
+
+  create_table "departments", force: :cascade do |t|
+    t.string "dep_short_name"
+    t.string "dep_full_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.time "start_time"
+    t.time "end_time"
+    t.string "professor"
+    t.string "section_letter"
+    t.string "semester"
+    t.integer "section_year"
+    t.string "section_days"
+    t.integer "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_sections_on_course_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "student_first_name"

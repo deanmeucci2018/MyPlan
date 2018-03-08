@@ -1,0 +1,43 @@
+
+<p>
+  <strong>Start time:</strong>
+  <%= @section.start_time.strftime "%I:%M %p" %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @section.end_time.strftime "%I:%M %p" %>
+</p>
+
+<p>
+  <strong>Professor:</strong>
+  <%= @section.professor %>
+</p>
+
+<p>
+  <strong>Section letter:</strong>
+  <%= @section.section_letter %>
+</p>
+
+<p>
+  <strong>Semester:</strong>
+  <%= @section.semester %>
+</p>
+
+<p>
+  <strong>Section year:</strong>
+  <%= @section.section_year %>
+</p>
+
+<p>
+  <strong>Section days:</strong>
+  <%= @section.section_days %>
+</p>
+
+<p>
+  <strong>Course:</strong>
+  <%= @section.course.course_full_name %>
+</p>
+
+<%= link_to 'Edit', edit_section_path(@section) %> |
+<%= link_to 'Back', sections_path %>

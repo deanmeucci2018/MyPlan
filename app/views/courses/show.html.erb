@@ -1,0 +1,64 @@
+
+
+<p>
+  <strong>Course number:</strong>
+  <%= @course.course_number %>
+</p>
+
+<p>
+  <strong>Course full name:</strong>
+  <%= @course.course_full_name %>
+</p>
+
+<p>
+  <strong>Course description:</strong>
+  <%= @course.course_description %>
+</p>
+
+<p>
+  <strong>Course credits:</strong>
+  <%= @course.course_credits %>
+</p>
+
+<p>
+  <strong>Q req:</strong>
+  <%= @course.q_req %>
+</p>
+
+<p>
+  <strong>W req:</strong>
+  <%= @course.w_req %>
+</p>
+
+<p>
+  <strong>S req:</strong>
+  <%= @course.s_req %>
+</p>
+
+<p>
+  <strong>Ah req:</strong>
+  <%= @course.ah_req %>
+</p>
+
+<p>
+  <strong>L req:</strong>
+  <%= @course.l_req %>
+</p>
+
+<p>
+  <strong>Sm req:</strong>
+  <%= @course.sm_req %>
+</p>
+
+<p>
+  <strong>Ss req:</strong>
+  <%= @course.ss_req %>
+</p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @course.department.dep_short_name %>
+</p>
+
+<%= link_to 'Edit', edit_course_path(@course) %> |
+<%= link_to 'Back', courses_path %>

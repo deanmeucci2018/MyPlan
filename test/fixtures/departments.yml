@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  dep_short_name: MyString
+  dep_full_name: MyString
+
+two:
+  dep_short_name: MyString
+  dep_full_name: MyString
