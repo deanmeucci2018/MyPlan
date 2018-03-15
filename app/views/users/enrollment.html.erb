@@ -1,0 +1,11 @@
+<%= form_for(@user) do |f| %>
+    
+    <%= hidden_field_tag "user[section_ids][]", nil %>
+    <% Section.all.each do |section| %>
+      <%= check_box_tag "user[section_ids][]", section.id, @user.section_ids.include?(section.id), id: dom_id(section) %>
+      <%= label_tag dom_id(section), section.course.course_full_name %><br>
+    <% end %>        
+    
+
+		<%= f.submit   "Add Sections", class: "btn btn-primary" %>
+<% end %>
