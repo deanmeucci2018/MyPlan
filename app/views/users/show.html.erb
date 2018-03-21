@@ -34,7 +34,10 @@
     <p style="text-align:center"><%= link_to "Section Index", controller: "sections", action: "index" %></p>
     <p style="text-align:center"><%= link_to "Interest Index", controller: "interests", action: "index" %></p>
     <p style="text-align:center"><%= link_to "Requirement Index", controller: "requirements", action: "index" %></p>
+    <h5 style="text-align:center">Relationship Tables</h5>
     <p style="text-align:center"><%= link_to "Student Enrollment Index", controller: "enrolls", action: "index" %></p>
+    <p style="text-align:center"><%= link_to "Course Requirement Index", controller: "course_requirements", action: "index" %></p>
+    <p style="text-align:center"><%= link_to "Student Interest Index", controller: "student_interests", action: "index" %></p>
     <%end%>
     
 </div>
@@ -73,7 +76,7 @@
             <td><%= en.section.course.course_credits %></td>
             <td><%= en.section.professor %></td>
             <td><%= en.section.semester + ' ' + en.section.section_year.to_s %></td>
-            <td><%= en.section.start_time.strftime "%I:%M" %> - <%= en.section.end_time.strftime "%I:%M %p" %></td>
+            <td><%= en.section.start_time.strftime "%I:%M" %> - <%= en.section.end_time.strftime "%I:%M %p" %> <%= en.section.section_days %></td>
             
             <!-- This runs to check if the course is a competencies completion or not -->
             <% if en.section.course.q_req == true %>

@@ -91,7 +91,13 @@ class UsersController < ApplicationController
     end
     
     def admin_user
-	    redirect_to(root_url) unless current_user.admin? #this makes sure that if the user is not an admin user, they are redirected to root_url
+      if false == logged_in?
+         flash[:alert] = "Invalid"
+         redirect_to(login_url)
+         
+      else
+          redirect_to(root_url) unless current_user.admin? #this makes sure that if the user is not an admin user, they are redirected to root_url
+      end
     end
   
 end

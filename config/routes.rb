@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  #get 'student_interests/index'
+
+  #get 'course_requirements/index'
+
   resources :requirements
   resources :interests
   resources :sections
@@ -7,6 +11,8 @@ Rails.application.routes.draw do
   resources :departments
   resources :users
   resources :enrolls
+  resources :course_requirements
+  resources :student_interests
   
   get 'sessions/new'
   get '/login', to: 'sessions#new'

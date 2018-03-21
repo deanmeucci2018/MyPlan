@@ -1,0 +1,20 @@
+<h1>Course Requirements</h1>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Requirement Name</th>
+      <th>Course Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @course_requirements.each do |cr| %>
+      <tr>
+        <td><%= cr.requirement.requirement_name + ' ' + cr.requirement.requirement_type %></td>
+        <td><%= cr.course.department.dep_short_name + '' + cr.course.course_number.to_s + ' ~ ' + cr.course.course_full_name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

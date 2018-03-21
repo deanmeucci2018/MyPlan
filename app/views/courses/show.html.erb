@@ -11,6 +11,11 @@
 </p>
 
 <p>
+  <strong>Department:</strong>
+  <%= @course.department.dep_short_name %>
+</p>
+
+<p>
   <strong>Course description:</strong>
   <%= @course.course_description %>
 </p>
@@ -20,45 +25,49 @@
   <%= @course.course_credits %>
 </p>
 
-<p>
-  <strong>Q req:</strong>
-  <%= @course.q_req %>
-</p>
+<% if @course.q_req == true %>
+  <p>
+    <strong>Quantitative Requirement</strong>
+  </p>
+<% end %>
 
-<p>
-  <strong>W req:</strong>
-  <%= @course.w_req %>
-</p>
+<% if @course.w_req == true %>
+  <p>
+    <strong>Writing Requirement</strong>
+  </p>
+<% end %>
 
-<p>
-  <strong>S req:</strong>
-  <%= @course.s_req %>
-</p>
+<% if @course.s_req == true %>
+  <p>
+    <strong>Speech Requirement</strong>
+  </p>
+<% end %>
 
-<p>
-  <strong>Ah req:</strong>
-  <%= @course.ah_req %>
-</p>
+<% if @course.ah_req == true %>
+  <p>
+    <strong>Arts and Humanities Requirement</strong>
+  </p>
+<% end %>
 
-<p>
-  <strong>L req:</strong>
-  <%= @course.l_req %>
-</p>
+<% if @course.l_req == true %>
+  <p>
+    <strong>Language Requirement</strong>
+  </p>
+<% end %>
 
-<p>
-  <strong>Sm req:</strong>
-  <%= @course.sm_req %>
-</p>
+<% if @course.sm_req == true %>
+  <p>
+    <strong>Science and Math Requirement</strong>
+  </p>
+<% end %>
 
-<p>
-  <strong>Ss req:</strong>
-  <%= @course.ss_req %>
-</p>
+<% if @course.ss_req == true %>
+  <p>
+    <strong>Social Science Requirement</strong>
+  </p>
+<% end %>
 
-<p>
-  <strong>Department:</strong>
-  <%= @course.department.dep_short_name %>
-</p>
+
 
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>

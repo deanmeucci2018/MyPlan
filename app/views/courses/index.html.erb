@@ -8,7 +8,6 @@
       <th>Course number</th>
       <th>Course full name</th>
       <th>Course credits</th>
-      <th>Department</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,10 +15,9 @@
   <tbody>
     <% @courses.each do |course| %>
       <tr>
-        <td><%= course.course_number %></td>
+        <td><%= course.department.dep_short_name %><%= course.course_number %></td>
         <td><%= course.course_full_name %></td>
         <td><%= course.course_credits %></td>
-        <td><%= course.department.dep_short_name %></td>
         <td><%= link_to 'Show', course %></td>
         <td><%= link_to 'Edit', edit_course_path(course) %></td>
         <td><%= link_to 'Destroy', course, method: :delete, data: { confirm: 'Are you sure?' } %></td>

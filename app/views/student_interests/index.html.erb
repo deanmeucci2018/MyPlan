@@ -1,0 +1,20 @@
+<h1>Student Interests</h1>
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Student Name</th>
+      <th>Interest Name</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @student_interests.each do |si| %>
+      <tr>
+        <td><%= si.user.student_first_name + ' ' + si.user.student_last_name %></td>
+        <td><%= si.interest.interest_type + ' - ' + si.interest.interest_name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -13,7 +13,7 @@
     <% Section.all.each do |section| %>
       <tr>
        <td><%= check_box_tag "user[section_ids][]", section.id, @user.section_ids.include?(section.id), id: dom_id(section) %></td>
-       <td><%= label_tag dom_id(section), section.course.department.dep_short_name + '' + section.course.course_number.to_s + '' + section.section_letter %></td>
+       <td><%= label_tag dom_id(section), section.course.department.dep_short_name + '' + section.course.course_number.to_s + '' + section.section_letter + ' - ' + section.semester + ' ' + section.section_year.to_s %></td>
       </tr> 
     <% end %>        
     </table>
