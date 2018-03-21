@@ -1,0 +1,56 @@
+<%= form_with(model: requirement, local: true) do |form| %>
+  <% if requirement.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(requirement.errors.count, "error") %> prohibited this requirement from being saved:</h2>
+
+      <ul>
+      <% requirement.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :requirement_name %>
+    <%= form.text_field :requirement_name, id: :requirement_requirement_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :requirement_type %>
+    <%= form.text_field :requirement_type, id: :requirement_requirement_type %>
+  </div>
+
+  <div class="field">
+    <%= form.label :courses_towards_requirement %>
+    <%= form.text_field :courses_towards_requirement, id: :requirement_courses_towards_requirement %>
+  </div>
+  
+  <div class="field">
+    <%= form.label :interest_name %>
+    <%= form.select :interest_id, @options %>
+  </div>
+  
+  <div class="field">
+    <table>
+      <thead>
+        <tr>
+          <th>Course</th>
+          <th>Select to add as requirement</th>
+        </tr>
+      </thead>
+   <%= hidden_field_tag "requirement[course_ids][]", nil %>
+    <% Course.all.each do |course| %>
+      <tr>
+          <td><%= label_tag dom_id(course), course.department.dep_short_name + '' + course.course_number.to_s %></td>
+          <td><%= check_box_tag "requirement[course_ids][]", course.id, requirement.course_ids.include?(course.id), id: dom_id(course) %></td>
+      </tr>
+    <% end %>
+   </table>
+  </div>
+
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

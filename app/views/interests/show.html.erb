@@ -1,0 +1,25 @@
+
+
+<p>
+  <strong>Interest name:</strong>
+  <%= @interest.interest_name %>
+</p>
+
+<p>
+  <strong>Interest type:</strong>
+  <%= @interest.interest_type %>
+</p>
+
+<p>
+  <strong>Total credits needed:</strong>
+  <%= @interest.total_credits_needed %>
+</p>
+
+<p>
+  <strong>Department:</strong>
+  <%= @interest.department.dep_short_name %>
+</p>
+
+
+<%= link_to 'Edit', edit_interest_path(@interest) %> |
+<%= link_to 'Back', interests_path %>

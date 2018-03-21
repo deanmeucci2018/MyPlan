@@ -9,6 +9,10 @@
         Email: <%= @user.email %>
         <br>
         Graduation Year: <%= @user.grad_year %>
+        <% @user.student_interests.each do |si|%>
+        <br>
+            <%= si.interest.interest_type + ': ' + si.interest.interest_name %>
+        <%end%>
         <br>
         Total Credits: 
         <% if @user.total_credits == nil %>
@@ -22,12 +26,15 @@
 <div class="col-md-4">
     <br>
     <% if current_user.admin? %>
-    <h5 style="text-align:center">Indexes</h5><br><br>
+    <h5 style="text-align:center">Indexes</h5><br>
 
     <p style="text-align:center"><%= link_to "User Index", controller: "users", action: "index" %></p>
     <p style="text-align:center"><%= link_to "Department Index", controller: "departments", action: "index" %></p>
     <p style="text-align:center"><%= link_to "Course Index", controller: "courses", action: "index" %></p>
     <p style="text-align:center"><%= link_to "Section Index", controller: "sections", action: "index" %></p>
+    <p style="text-align:center"><%= link_to "Interest Index", controller: "interests", action: "index" %></p>
+    <p style="text-align:center"><%= link_to "Requirement Index", controller: "requirements", action: "index" %></p>
+    <p style="text-align:center"><%= link_to "Student Enrollment Index", controller: "enrolls", action: "index" %></p>
     <%end%>
     
 </div>
@@ -35,8 +42,63 @@
     <br>
     <h5 style="float:right">Edit Your Profile</h5><br><br>
     <p style="float:right"><%= link_to "Profile Settings", edit_user_path(current_user) %></p> <br> <br>
-    <p style="float:right"><%= link_to "Adjust Courses", controller: "users", action: "enrollment" %></p>
+    <p style="float:right"><%= link_to "Adjust Courses", controller: "users", action: "enrollment" %></p> <br> <br>
+    <p style="float:right"><%= link_to "Adjust Interests", controller: "users", action: "interested" %></p>
 
 </div>
 
+</div>
+
+<div class ="row">
+    <h5>Your Courses</h5>
+    <br>
+    <table style ="width:100%">
+        <thead>
+            <tr>
+                <th>Dep/number</th>
+                <th>Course</th>
+                <th>Credits</th>
+                <th>Professor</th>
+                <th>Semester</th>
+                <th>Time</th>
+                <th>Competencies</th> 
+                <th>Area</th>
+
+            </tr>
+        </thead>
+        <% @user.enrolls.each do |en| %>
+        <tr>
+            <td><%= en.section.course.department.dep_short_name + '' + en.section.course.course_number.to_s + '' + en.section.section_letter%></td>
+            <td><%= en.section.course.course_full_name.titleize %></td>
+            <td><%= en.section.course.course_credits %></td>
+            <td><%= en.section.professor %></td>
+            <td><%= en.section.semester + ' ' + en.section.section_year.to_s %></td>
+            <td><%= en.section.start_time.strftime "%I:%M" %> - <%= en.section.end_time.strftime "%I:%M %p" %></td>
+            
+            <!-- This runs to check if the course is a competencies completion or not -->
+            <% if en.section.course.q_req == true %>
+                <td>Quantitative</td>
+            <% elsif en.section.course.w_req == true %>
+                <td>Writing</td>
+            <% elsif en.section.course.s_req == true %>
+                <td>Speech</td>
+            <% else %>
+                <td>None</td>
+            <% end %>
+            
+            <!-- This runs to check if the course is a area completion or not -->
+            <% if en.section.course.ss_req == true %>
+                <td>SS</td>
+            <% elsif en.section.course.ah_req == true %>
+                <td>AH</td>
+            <% elsif en.section.course.l_req == true %>
+                <td>L</td>
+            <% elsif en.section.course.sm_req == true %>
+                <td>SM</td>
+            <% else %>
+                <td>None</td>
+            <% end %>
+        </tr>
+        <% end %>
+    </table>
 </div>

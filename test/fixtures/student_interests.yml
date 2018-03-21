@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  student_interest_credits: 9.99
+  user: one
+  interest: one
+
+two:
+  student_interest_credits: 9.99
+  user: two
+  interest: two

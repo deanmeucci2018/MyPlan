@@ -1,21 +1,13 @@
 <!-- <p id="notice">%= notice %></p> -->
 
 <h1>Courses</h1>
-
+<div style="float:right"><%= link_to 'New Course', new_course_path %></div>
 <table>
   <thead>
     <tr>
       <th>Course number</th>
       <th>Course full name</th>
-      <th>Course description</th>
       <th>Course credits</th>
-      <th>Q req</th>
-      <th>W req</th>
-      <th>S req</th>
-      <th>Ah req</th>
-      <th>L req</th>
-      <th>Sm req</th>
-      <th>Ss req</th>
       <th>Department</th>
       <th colspan="3"></th>
     </tr>
@@ -26,15 +18,7 @@
       <tr>
         <td><%= course.course_number %></td>
         <td><%= course.course_full_name %></td>
-        <td><%= course.course_description %></td>
         <td><%= course.course_credits %></td>
-        <td><%= course.q_req %></td>
-        <td><%= course.w_req %></td>
-        <td><%= course.s_req %></td>
-        <td><%= course.ah_req %></td>
-        <td><%= course.l_req %></td>
-        <td><%= course.sm_req %></td>
-        <td><%= course.ss_req %></td>
         <td><%= course.department.dep_short_name %></td>
         <td><%= link_to 'Show', course %></td>
         <td><%= link_to 'Edit', edit_course_path(course) %></td>

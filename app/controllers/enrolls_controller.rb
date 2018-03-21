@@ -1,4 +1,8 @@
 class EnrollsController < ApplicationController
+  #before_action :logged_in_user, only: [:edit, :update, :show, :delete, :enrollment, :interested] #:index may be needed for admin and instead of delete could be destroy
+  #before_action :correct_user, only: [:edit, :update, :show] #:index may be needed for admin
+  before_action :admin_user,  only:  [:destroy, :index]
+  
   def index
     @enrolls = Enroll.all
   end
@@ -34,18 +38,22 @@ class EnrollsController < ApplicationController
       end
     end
   end
+  
   def destroy
+    Enroll.find(params[:id]).destroy
+	  flash[:success] = "User successfully deleted"
+	  redirect_to users_path
   end
   
     private
     # Use callbacks to share common setup or constraints between actions.
-    def set_section
-      @section = Section.find(params[:id])
+    def set_enroll
+      @enroll = Enroll.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
-    def section_params
-      params.require(:section).permit(:start_time, :end_time, :professor, :section_letter, :semester, :section_year, :section_days, :course_id)
+    def enroll_params
+      params.require(:section).permit(:user_id, :course_id)
     end
     
     # Only allows admin CRUD   

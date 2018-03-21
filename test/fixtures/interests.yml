@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  interest_name: MyString
+  interest_type: MyString
+  total_credits_needed: 9.99
+  department: one
+
+two:
+  interest_name: MyString
+  interest_type: MyString
+  total_credits_needed: 9.99
+  department: two

@@ -1,6 +1,10 @@
 class User < ApplicationRecord
     has_many :enrolls, dependent: :destroy
     has_many :sections, through: :enrolls
+    
+    has_many :student_interests, dependent: :destroy
+    has_many :interests, through: :student_interests
+    
     before_save {self.email = email.downcase}
     validates :student_first_name, presence: true, length: {maximum: 50}
     validates :student_last_name, presence: true, length: {maximum: 50}

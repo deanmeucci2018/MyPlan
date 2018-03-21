@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :requirements
+  resources :interests
   resources :sections
   resources :courses
   resources :departments
@@ -15,7 +17,7 @@ Rails.application.routes.draw do
   get   '/signup', to:   'users#new'
 
   get 'users/:id/enrollment', to: 'users#enrollment'
-
+  get 'users/:id/interested', to: 'users#interested'
   
   get 'static_pages/help'
 

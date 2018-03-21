@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180312213745) do
+ActiveRecord::Schema.define(version: 20180319200216) do
+
+  create_table "course_requirements", force: :cascade do |t|
+    t.integer "course_id"
+    t.integer "requirement_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id", "requirement_id"], name: "index_course_requirements_on_course_id_and_requirement_id"
+    t.index ["course_id"], name: "index_course_requirements_on_course_id"
+    t.index ["requirement_id"], name: "index_course_requirements_on_requirement_id"
+  end
 
   create_table "courses", force: :cascade do |t|
     t.integer "course_number"
@@ -47,6 +57,28 @@ ActiveRecord::Schema.define(version: 20180312213745) do
     t.index ["user_id"], name: "index_enrolls_on_user_id"
   end
 
+  create_table "interests", force: :cascade do |t|
+    t.string "interest_name"
+    t.string "interest_type"
+    t.decimal "total_credits_needed"
+    t.integer "department_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "requirement_id"
+    t.index ["department_id"], name: "index_interests_on_department_id"
+    t.index ["requirement_id"], name: "index_interests_on_requirement_id"
+  end
+
+  create_table "requirements", force: :cascade do |t|
+    t.string "requirement_name"
+    t.string "requirement_type"
+    t.decimal "courses_towards_requirement"
+    t.integer "interest_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["interest_id"], name: "index_requirements_on_interest_id"
+  end
+
   create_table "sections", force: :cascade do |t|
     t.time "start_time"
     t.time "end_time"
@@ -59,6 +91,17 @@ ActiveRecord::Schema.define(version: 20180312213745) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_sections_on_course_id"
+  end
+
+  create_table "student_interests", force: :cascade do |t|
+    t.decimal "student_interest_credits"
+    t.integer "user_id"
+    t.integer "interest_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["interest_id"], name: "index_student_interests_on_interest_id"
+    t.index ["user_id", "interest_id"], name: "index_student_interests_on_user_id_and_interest_id"
+    t.index ["user_id"], name: "index_student_interests_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

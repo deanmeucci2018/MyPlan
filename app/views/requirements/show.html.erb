@@ -1,0 +1,33 @@
+
+
+<p>
+  <strong>Requirement name:</strong>
+  <%= @requirement.requirement_name %>
+</p>
+
+<p>
+  <strong>Requirement type:</strong>
+  <%= @requirement.requirement_type %>
+</p>
+
+<p>
+  <strong>Number of courses needed in requirement:</strong>
+  <%= @requirement.courses_towards_requirement %>
+</p>
+
+<p>
+  <strong>Interest:</strong>
+  <%= @requirement.interest.interest_name + ' ' + @requirement.interest.interest_type %>
+</p>
+
+<p>
+  <strong>Courses:</strong>
+  <ul>
+  <% @requirement.course_requirements.each do |cr| %>
+  <li> <%= cr.course.department.dep_short_name + '' + cr.course.course_number.to_s + ' ~ ' + cr.course.course_full_name %> </li>
+  <% end %>
+  </ul>
+</p>
+
+<%= link_to 'Edit', edit_requirement_path(@requirement) %> |
+<%= link_to 'Back', requirements_path %>

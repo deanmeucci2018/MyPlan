@@ -50,7 +50,7 @@ div {
 table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    width: 100%;
+   width: 100%; 
 }
 
 td, th {
@@ -62,6 +62,28 @@ td, th {
 tr:nth-child(even) {
     background-color: #dddddd;
 }
+
+
+#smallTable{
+  table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    font-size: 0.5em;
+   // width: 100%; comment in for full width tables
+  }
+
+  td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+  }
+
+  tr:nth-child(even) {
+      background-color: none;
+  }
+}
+
+
 
 #notice {
   color: green;
@@ -99,3 +121,11 @@ tr:nth-child(even) {
 label {
   display: block;
 }
+
+.selections{
+  display: inline;
+  width: 5%;
+}
+
+
+

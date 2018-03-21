@@ -1,0 +1,23 @@
+<%= form_for(@user) do |f| %>
+    
+    
+    
+    <div class="field">
+    <table style = "width:auto">
+      <thead>
+        <tr>
+          <th colspan="2">Select if this is one of your Majors, Minors, or Fellowships</th>
+        </tr>
+      </thead>
+    <%= hidden_field_tag "user[interest_ids][]", nil %>
+    <% Interest.all.each do |interest| %>
+    <tr>
+     <td><%= label_tag dom_id(interest), interest.interest_name + ' ' + interest.interest_type %></td>
+     <td> <%= check_box_tag "user[interest_ids][]", interest.id, @user.interest_ids.include?(interest.id), id: dom_id(interest) %></td>
+    </tr>
+    <% end %> 
+    </table>
+    </div>
+    <br>
+		<div style = "width: 50%"><%= f.submit   "Add Interests", class: "btn btn-primary"%></div>
+<% end %>
