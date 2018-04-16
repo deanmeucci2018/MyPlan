@@ -24,6 +24,9 @@ class RequirementsController < ApplicationController
         @options[u.interest_name + ' ' + u.interest_type] = u.id
       end
     end
+        #Creation of Table by Department for course selection
+    @courses = Course.joins(:department).order(:course_number)
+    @course_group = @courses.group_by{ |c| [c.department_id]}
     
     @requirement = Requirement.new
   end
@@ -38,6 +41,10 @@ class RequirementsController < ApplicationController
         @options[u.interest_name+ ' ' + u.interest_type] = u.id
       end
     end
+    #Creation of Table by Department for course selection
+    @courses = Course.joins(:department).order(:course_number)
+    @course_group = @courses.group_by{ |c| [c.department_id]}
+    
   end
 
   # POST /requirements

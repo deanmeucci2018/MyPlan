@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :requirement_type %>
-    <%= form.text_field :requirement_type, id: :requirement_requirement_type %>
+    <%= form.select(:requirement, [['Major', "Major"], ['Minor', "Minor"], ['Fellowship', "Fellowship/Honors Program"]]) %>
   </div>
 
   <div class="field">
@@ -28,28 +28,39 @@
   
   <div class="field">
     <%= form.label :interest_name %>
-    <%= form.select :interest_id, @options %>
+    <%= form.grouped_collection_select :interest_id, Department.order(:dep_short_name), :interests, :dep_short_name, :id, :interest_full_name, include_blank: true %>
   </div>
   
-  <div class="field">
-    <table style = "width:auto">
-      <thead>
-        <tr>
-          <th>Course</th>
-          <th>Select to add as requirement</th>
-        </tr>
+
+  <h5>Select Required Courses For Specific Requirement in Interest</h5>
+  <div class="field" id="smallTable" style = "width:auto;" >
+    <%= hidden_field_tag "requirement[course_ids][]", nil %>
+    <% @course_group.each do |department, available| %>
+    <br>
+        <table style="display: inline-block; width:auto; vertical-align:top">
+          <thead>
+            <tr>
+              <th colspan="2"style ="text-align:center"> <%= department[0] %></th>
+            </tr>
+            <tr>
+              <th>Course</th>
+              <th>Select</th>
+            </tr>
       </thead>
-   <%= hidden_field_tag "requirement[course_ids][]", nil %>
-    <% Course.all.each do |course| %>
-      <tr>
-          <td><%= label_tag dom_id(course), course.department.dep_short_name + '' + course.course_number.to_s %></td>
-          <td><%= check_box_tag "requirement[course_ids][]", course.id, requirement.course_ids.include?(course.id), id: dom_id(course) %></td>
-      </tr>
-    <% end %>
-   </table>
+
+      
+        <% for course in available %>
+          <tr>
+            <td><%= label_tag dom_id(course), course.department.dep_short_name + '' + course.course_number.to_s %></td>
+            <td><%= check_box_tag "requirement[course_ids][]", course.id, requirement.course_ids.include?(course.id), id: dom_id(course) %></td>
+          </tr>
+        <% end %>
+            
+    <% end %>        
+      </table>
   </div>
 
-
+<br>
   <div class="actions">
     <%= form.submit %>
   </div>

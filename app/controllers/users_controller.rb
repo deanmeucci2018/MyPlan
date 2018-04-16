@@ -44,6 +44,8 @@ class UsersController < ApplicationController
   
   def interested
     @user = User.find(params[:id])
+    @interests = Interest.joins(:department).order(:department_id, :interest_type, :interest_name)
+    @interest_order = @interests.group_by {|i| [i.department.dep_full_name] }
   end
   
   

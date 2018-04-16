@@ -5,4 +5,7 @@ class Interest < ApplicationRecord
   has_many :student_interests, dependent: :destroy
   has_many :users, through: :student_interests
   
+  def interest_full_name
+        "#{interest_name} Type: #{interest_type}"
+  end
 end
