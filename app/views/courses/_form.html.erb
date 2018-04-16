@@ -30,44 +30,46 @@
     <%= form.label :course_credits %>
     <%= form.text_field :course_credits, id: :course_course_credits %>
   </div>
-
-  <div class="field">
-    <%= form.label :Quantitative_Req %>
+  <br>
+  <p><b>Check all that apply</b></p>
+  
+  <div class="field" id="coursereqlabels">
     <%= form.check_box :q_req, id: :course_q_req %>
+    <%= form.label :Quantitative_Req %>
   </div>
 
-  <div class="field">
+  <div class="field"  id="coursereqlabels">
+    <%= form.check_box :w_req, id: :course_w_req %>    
     <%= form.label :Writing_Req %>
-    <%= form.check_box :w_req, id: :course_w_req %>
   </div>
 
-  <div class="field">
-    <%= form.label :Speech_Req %>
+  <div class="field"  id="coursereqlabels">
     <%= form.check_box :s_req, id: :course_s_req %>
+    <%= form.label :Speech_Req %>
   </div>
 
-  <div class="field">
+  <div class="field"  id="coursereqlabels">
+    <%= form.check_box :ah_req, id: :course_ah_req %>    
     <%= form.label :Arts_and_Humanitites_Req %>
-    <%= form.check_box :ah_req, id: :course_ah_req %>
   </div>
 
-  <div class="field">
-    <%= form.label :Language_Req %>
+  <div class="field"  id="coursereqlabels">
     <%= form.check_box :l_req, id: :course_l_req %>
+    <%= form.label :Language_Req %>
   </div>
 
-  <div class="field">
-    <%= form.label :Science_and_Math_Req %>
+  <div class="field"  id="coursereqlabels">
     <%= form.check_box :sm_req, id: :course_sm_req %>
+        <%= form.label :Science_and_Math_Req %>
   </div>
 
-  <div class="field">
-    <%= form.label :Social_Science_Req %>
+  <div class="field"  id="coursereqlabels">
     <%= form.check_box :ss_req, id: :course_ss_req %>
+    <%= form.label :Social_Science_Req %>
   </div>
 
   <div class="field">
-    <%= form.label :Department %>
+    <%= form.label :Department %> 
     <%= form.select :department_id, @options %>
   </div>
 

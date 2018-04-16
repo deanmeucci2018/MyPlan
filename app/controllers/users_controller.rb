@@ -21,7 +21,26 @@ class UsersController < ApplicationController
   
   def enrollment
     @user = User.find(params[:id])
+    @previous = ""
+    @previoustop = ""
+    #ordering sections
+    @section_first = Section.joins(:course).order(:section_year, :semester, :course_id)
+    @section_order = @section_first.group_by {|t| [t.section_year, t.semester, t.course.department.dep_short_name] }
+    
+    #@sectionyear = Section.find_by_section_year(params[:section_year])
+    #@sectionsemester = Section.find_by_semester(params[:semester])
+    
+   
+      @section = Section.joins(:course).order(:section_year, :semester, :course_id).where("section_year = :section_year AND semester = :semester",{section_year: params[:section_year], semester: params[:semester]})
+      @section_time = @section.group_by {|t| [t.section_year, t.semester, t.course.department.dep_short_name] }
+    
+    #Helper for adding previously selected classes
+    @Helper = Section.joins(:course).order(:section_year, :semester, :course_id).where("section_year = :section_year AND semester = :semester",{section_year: params[:section_year], semester: params[:semester]})
+  
+
   end
+  
+
   
   def interested
     @user = User.find(params[:id])
@@ -46,12 +65,9 @@ class UsersController < ApplicationController
    if params[:password].blank?
       params.delete(:password)
    end
-   
-    @total = 0.0
-    @user.enrolls.each do |en|
-        @total =  @total + en.section.course.course_credits
-    end
-    @user.total_credits = @total
+
+    
+   @user.total_credits = @user.enrolls.sum{ |p| p.section.course.course_credits}
    
    if @user.update_attributes(user_params)  #if the user’s attributes are updated successfully
 	  flash[:success] = "Profile updated"

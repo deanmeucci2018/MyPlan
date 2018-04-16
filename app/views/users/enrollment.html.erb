@@ -1,24 +1,75 @@
 <%= form_for(@user) do |f| %>
-    
-  <div class="field">
-    
-    <table style = "width:auto">
-      <thead>
+
+
+<h1 style="text-align:center">Select Sections Taken</h1>
+
+  <nav >
+      <ul id ="enrollmentnav">
+    <% @section_order.each do |semesteryear, sections| %>
+     <% if (semesteryear[0].to_s + ' ' + semesteryear[1]) != @previoustop %>
+     
+        <li>
+          <%= link_to semesteryear[0].to_s + ' ' + semesteryear[1], controller: "users", action: "enrollment", id: @user, section_year: semesteryear[0], semester: semesteryear[1]  %>
+        </li> 
+         <% @previoustop = (semesteryear[0].to_s + ' ' + semesteryear[1]) %>
+       
+     <% end %>
+    <% end %>
+   </ul>
+  </nav>
+
+
+  
+
+  <div class="field" id="smallTable">
+    <%= hidden_field_tag "user[section_ids][]", nil %>
+    <% @section_time.each do |semesteryear, sections| %>
+     <% if (semesteryear[0].to_s + ' ' + semesteryear[1]) != @previous %>
+        <table>
+          <thead>
+            <tr>
+              <th colspan="5" style ="text-align:center"><%= semesteryear[0].to_s + ' ' + semesteryear[1] %></th>
+              <% @previous = (semesteryear[0].to_s + ' ' + semesteryear[1]) %>
+            </tr>
+      <%end%>
+        <tr>
+         <td colspan="5"style ="text-align:center"><%= semesteryear[2]%></td>
+        </tr>
         <tr>
           <th>Course</th>
-          <th>Select if you took this section</th>
+          <th>Professor</th>
+          <th>Time</th>
+          <th>Days</th>
+          <th>Select</th>
         </tr>
       </thead>
-    <%= hidden_field_tag "user[section_ids][]", nil %>
-    <% Section.all.each do |section| %>
-      <tr>
-       <td><%= check_box_tag "user[section_ids][]", section.id, @user.section_ids.include?(section.id), id: dom_id(section) %></td>
-       <td><%= label_tag dom_id(section), section.course.department.dep_short_name + '' + section.course.course_number.to_s + '' + section.section_letter + ' - ' + section.semester + ' ' + section.section_year.to_s %></td>
-      </tr> 
+
+      
+        <% for sect in sections %>
+          <tr>
+           <td><%= label_tag dom_id(sect), sect.section_short %></td>
+           <td><%= label_tag dom_id(sect), sect.professor %></td>
+           <td><%= label_tag dom_id(sect), sect.section_fulltime %></td>
+           <td><%= label_tag dom_id(sect), sect.section_days %></td>
+           <td><%= check_box_tag "user[section_ids][]", sect.id, @user.section_ids.include?(sect.id), id: dom_id(sect) %></td>
+          </tr>
+        <% end %>
+            
     <% end %>        
-    </table>
-
+      </table>
   </div>
+  
+  <!-- This allows previously selected sections to be added as well -->
+     <br><br>
+          <% @user.enrolls.each do |en| %>
+            <% if !(@Helper.include?(en.section)) %>
+                <%= hidden_field_tag "user[section_ids][]", en.section.id %>
+            <%end%>
+          <%end%>
 
-		<div style = "width:50%"><%= f.submit   "Add Sections", class: "btn btn-primary" %></div>
+    
+  
+    
+		<div style = "width:50%; margin-right:25%;margin-left:25%; text-align:center"><%= f.submit   "Add Sections", class: "btn btn-primary" %></div>
+		<br>
 <% end %>

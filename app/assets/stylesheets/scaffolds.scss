@@ -1,51 +1,6 @@
-/* body {
-  background-color: #fff;
-  color: #333;
-  margin: 33px;
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
-}
+@import "bootstrap";
 
-p, ol, ul, td {
-  font-family: verdana, arial, helvetica, sans-serif;
-  font-size: 13px;
-  line-height: 18px;
-}
 
-pre {
-  background-color: #eee;
-  padding: 10px;
-  font-size: 11px;
-}
-
-a {
-  color: #000;
-
-  &:visited {
-    color: #666;
-  }
-
-  &:hover {
-    color: #fff;
-    background-color: #000;
-  }
-}
-
-th {
-  padding-bottom: 5px;
-}
-
-td {
-  padding: 0 5px 7px;
-}
-
-div {
-  &.field, &.actions {
-    margin-bottom: 10px;
-  }
-}
-*/
 
 table {
     font-family: arial, sans-serif;
@@ -64,24 +19,33 @@ tr:nth-child(even) {
 }
 
 
-#smallTable{
-  table {
+#smallTable table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
-    font-size: 0.5em;
+    
    // width: 100%; comment in for full width tables
   }
 
-  td, th {
+#smallTable  td {
       border: 1px solid #dddddd;
       text-align: left;
-      padding: 8px;
+      vertical-align: center;
+      padding: none;
+      margin-bottom: 0px;
+      font-size: 0.8em;
+  }
+#smallTable  label {
+      border: 1px solid #dddddd;
+      text-align: left;
+      vertical-align: center;
+      padding: none;
+      margin-bottom: 0px;
+      border: none;
   }
 
-  tr:nth-child(even) {
+#smallTable  tr:nth-child(even) {
       background-color: none;
   }
-}
 
 
 
@@ -127,5 +91,124 @@ label {
   width: 5%;
 }
 
+//----------------------------------------------//
 
+
+#enrollment{
+  
+ 
+  table {
+  		width: 300px;
+	}
+  td  {
+  		border: 1px solid;
+  		text-align: center;
+	}
+  tr {
+  		border: 1px solid;
+  		text-align: center;
+	}
+	
+	th {
+	  border: 1px solid;
+  	text-align: center;
+	}
+} 
+
+
+//SELECTING SEMESTER COURSES
+#enrollmentnav {
+	margin: 0; 
+	padding: 0.5em 3em;
+	//background: red; 
+	//color: #FFF;
+	font-size: 20px;
+	list-style: none;
+	text-align: center;
+	
+}
+
+#enrollmentnav li {
+	//float: left;
+	display: inline;
+	margin-left: 0.5em; // centers navs over logo
+	padding-left: 0.75em; // same as above
+	margin-right: 0.5em; //0.5em
+	padding-right: 0.75em; //0.75em
+	border-right: 1px solid #aaa;
+	//border-right: 1px solid #99C;
+	//font-weight: bold;
+	//color: blue;
+	text-align: center;
+}
+#enrollmentnav li a {
+  text-decoration: none;
+  color: #ccc;
+  font: 25px/1 Helvetica, Verdana, sans-serif;
+  text-transform: uppercase;
+ 
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -ms-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#enrollmentnav li:last-child {
+	//float: right;
+	display: inline;
+	margin-right: 0.5em; 
+	padding-right: 0.75em;
+	border-right: 0;
+	font-weight: bold;
+	//color: blue;
+}
+
+#enrollmentnav li a:hover {
+  color: #666;
+}
+ 
+#enrollmentnav li.active a {
+  font-weight: bold;
+  color: #333;
+}
+
+
+//COURSE EDITING 
+#coursereqlabels{
+  label {
+  display: inline-block;
+  padding-left: 15px;
+  text-indent: -15px;
+}
+input {
+  width: 13px;
+  height: 13px;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+  *overflow: hidden;
+}
+}
+
+//SECTION EDITING
+#time{
+  label{
+  display: inline-block;
+  padding-left: 15px;
+  text-indent: -15px;
+  }
+  select {
+  width: auto;
+  //height: 13px;
+  padding: 0;
+  margin: 0;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+  *overflow: hidden;
+}
+}
 

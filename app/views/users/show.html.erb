@@ -18,11 +18,14 @@
         <% if @user.total_credits == nil %>
             0.0
         <% else %>    
-            <%= @user.total_credits %>
+            <%= @user.enrolls.sum{ |p| p.section.course.course_credits}%>
         <% end %>
     </h5>
  </section>
 </aside>
+
+
+
 <div class="col-md-4">
     <br>
     <% if current_user.admin? %>
@@ -51,6 +54,9 @@
 </div>
 
 </div>
+
+
+
 
 <div class ="row">
     <h5>Your Courses</h5>

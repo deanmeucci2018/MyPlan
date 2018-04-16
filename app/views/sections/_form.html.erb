@@ -10,16 +10,14 @@
       </ul>
     </div>
   <% end %>
+  
 
-  <div class="field">
-    <%= form.label :start_time %>
-    <%= form.time_select :start_time, id: :section_start_time %>
+
+  <div class="field" id="time">
+    <%= form.label :Section_Time %>
+    <%= form.time_select :start_time, id: :section_start_time %> - <%= form.time_select :end_time, id: :section_end_time %>
   </div>
 
-  <div class="field">
-    <%= form.label :end_time %>
-    <%= form.time_select :end_time, id: :section_end_time %>
-  </div>
 
   <div class="field">
     <%= form.label :professor %>
@@ -37,21 +35,26 @@
   </div>
 
   <div class="field">
-    <%= form.label :section_year %>
+    <%= form.label :Year %>
     <%= form.number_field :section_year, id: :section_section_year %>
   </div>
 
   <div class="field">
-    <%= form.label :section_days %>
+    <%= form.label :Days %>
+    <small>Enter by abbreviation: MWF TR</small><br>
     <%= form.text_field :section_days, id: :section_section_days %>
   </div>
+  
 
   <div class="field">
     <%= form.label :course_name %>
-    <%= form.select :course_id, @options %>
+    <%= form.grouped_collection_select :course_id, Department.order(:dep_short_name), :courses, :dep_short_name, :id, :course_full_name, include_blank: true %>
   </div>
 
   <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>
+
+
+
