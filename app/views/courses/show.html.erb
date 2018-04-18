@@ -1,73 +1,62 @@
+<% provide(:title, @course.course_full_name) %>
+<div class="card text-center">
+  <div class="card-header">
+    <h5 class="card-title"><%= @course.course_full_name %></h5>
+     <h6 class="card-subtitle mb-2 text-muted"><%= @course.course_short_name %></h6>
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Description</h5>
+    <p class="card-text"><%= @course.course_description %></p>
+    <hr>
+        <div class="row" >
+          <aside class="col-md-6">
+            <section style="float:left">
+              <p style="text-align:left" class="card-text">
+                <strong>Department:</strong>
+                <%= @course.department.dep_full_name %>
+                <br>
+                <strong>Credits:</strong>
+                <%= @course.course_credits %>
+              </p>
+            </section>
+          </aside>
+          <aside="col-md-6">
+            <section style="float:left">
+              <p style="text-align:left" class="card-text">
+                <strong>Competencies:</strong>
+                <% if @course.q_req == true %>
+                  Quantitative
+                <% elsif @course.w_req == true %>
+                  Writing
+                <% elsif @course.s_req == true %>
+                  Speech
+                <% else %>
+                  None
+                <% end %>
+                <br>
+                <strong>Areas:</strong>
+                <% if @course.ah_req == true %>
+                  Arts and Humanities
+                <% elsif @course.l_req == true %>
+                  Language
+                <% elsif @course.sm_req == true %>
+                  Science and Math
+                <% elsif @course.ss_req == true %>
+                  Social Science
+                <% else %>
+                  None
+                <% end %>
+              </p>
+            </section>
+          </aside>
+        </div>
+  </div>
+  <div class="card-footer text-muted">
+    <% if current_user.admin? %>
+      <%= link_to 'Edit', edit_course_path(@course), class: "btn btn-primary"  %> |
+    <% end %>
+    <%= link_to 'Back', courses_path, class: "btn btn-primary"  %>
+  </div>
+</div>
 
 
-<p>
-  <strong>Course number:</strong>
-  <%= @course.course_number %>
-</p>
-
-<p>
-  <strong>Course full name:</strong>
-  <%= @course.course_full_name %>
-</p>
-
-<p>
-  <strong>Department:</strong>
-  <%= @course.department.dep_short_name %>
-</p>
-
-<p>
-  <strong>Course description:</strong>
-  <%= @course.course_description %>
-</p>
-
-<p>
-  <strong>Course credits:</strong>
-  <%= @course.course_credits %>
-</p>
-
-<% if @course.q_req == true %>
-  <p>
-    <strong>Quantitative Requirement</strong>
-  </p>
-<% end %>
-
-<% if @course.w_req == true %>
-  <p>
-    <strong>Writing Requirement</strong>
-  </p>
-<% end %>
-
-<% if @course.s_req == true %>
-  <p>
-    <strong>Speech Requirement</strong>
-  </p>
-<% end %>
-
-<% if @course.ah_req == true %>
-  <p>
-    <strong>Arts and Humanities Requirement</strong>
-  </p>
-<% end %>
-
-<% if @course.l_req == true %>
-  <p>
-    <strong>Language Requirement</strong>
-  </p>
-<% end %>
-
-<% if @course.sm_req == true %>
-  <p>
-    <strong>Science and Math Requirement</strong>
-  </p>
-<% end %>
-
-<% if @course.ss_req == true %>
-  <p>
-    <strong>Social Science Requirement</strong>
-  </p>
-<% end %>
-
-
-
-<%= link_to 'Edit', edit_course_path(@course) %> |
-<%= link_to 'Back', courses_path %>

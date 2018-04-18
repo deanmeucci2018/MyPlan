@@ -1,17 +1,19 @@
 class InterestsController < ApplicationController
+  before_action :logged_in_user, only: [:show, :index] #:show only for logged in users
   before_action :set_interest, only: [:show, :edit, :update, :destroy]
-  before_action :admin_user, only: [:show, :index, :destroy, :new, :edit, :update]
+  before_action :admin_user, only: [:destroy, :new, :edit, :update]
   
   
   # GET /interests
   # GET /interests.json
   def index
-    @interests = Interest.all
+    @interests = Interest.all.order(:department_id, :interest_type)
   end
 
   # GET /interests/1
   # GET /interests/1.json
   def show
+    @interests_belonging = Requirement.joins(:interest).where("interest_id = ?", params[:id])
   end
 
   # GET /interests/new

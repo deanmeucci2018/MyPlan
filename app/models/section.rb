@@ -3,6 +3,7 @@ class Section < ApplicationRecord
   has_many :enrolls, dependent: :destroy
   has_many :users, through: :enrolls
   
+  
   def section_name
     "#{semester}#{section_year.to_s}#{course.department.dep_short_name}#{course.course_number}#{section_letter}"
   end

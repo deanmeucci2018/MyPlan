@@ -1,10 +1,14 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:edit, :update, :show, :delete, :enrollment, :interested] #:index may be needed for admin and instead of delete could be destroy
-  before_action :correct_user, only: [:edit, :update, :show] #:index may be needed for admin
+  before_action :logged_in_user, only: [:edit, :update, :show, :delete,] #:index may be needed for admin and instead of delete could be destroy
+  before_action :correct_user, only: [:edit, :update, :show, :enrollment, :interested, :gameplan] #:index may be needed for admin
   before_action :admin_user,  only:  [:destroy, :index]
   
   def index
     @users = User.all
+  end
+  
+  def gameplan
+    @user = User.find(params[:id])
   end
   
   def new

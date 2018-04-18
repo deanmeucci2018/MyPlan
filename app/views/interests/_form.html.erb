@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= form.label :interest_type %>
-    <%= form.text_field :interest_type, id: :interest_interest_type %>
+    <%= form.select(:interest_type, [['Major', "Major"], ['Minor', "Minor"], ['Fellowship', "Fellowship/Honors Program"]]) %>
   </div>
 
   <div class="field">

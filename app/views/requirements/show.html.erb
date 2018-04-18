@@ -29,5 +29,7 @@
   </ul>
 </p>
 
-<%= link_to 'Edit', edit_requirement_path(@requirement) %> |
+<% if current_user.admin? %>
+  <%= link_to 'Edit', edit_requirement_path(@requirement) %> |
+<% end %>
 <%= link_to 'Back', requirements_path %>

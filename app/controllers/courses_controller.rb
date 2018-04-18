@@ -1,17 +1,19 @@
 class CoursesController < ApplicationController
+  before_action :logged_in_user, only: [:show, :index] #:show only for logged in users
   before_action :set_course, only: [:show, :edit, :update, :destroy]
-  before_action :admin_user, only: [:show, :index, :destroy, :new, :edit, :update]
+  before_action :admin_user, only: [:destroy, :new, :edit, :update]
   
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all
+    @courses = Course.all.order(:department_id, :course_number)
   end
 
   # GET /courses/1
   # GET /courses/1.json
   def show
   end
+  
 
   # GET /courses/new
   def new

@@ -1,11 +1,15 @@
 <% provide(:title, @user.student_first_name) %>
-<div class="row">
+<div class="row" >
   <aside class="col-md-4">
-    <section >
-     <h1>
-        <%= @user.student_first_name %> <%= @user.student_last_name %> 
-    </h1>
-    <h5>
+    <section>
+    <div class="card">
+        <div class="card-header">
+             <h3>
+                <%= @user.student_first_name %> <%= @user.student_last_name %> 
+            </h3>
+        </div>
+        <div class="card-body">
+    <b>
         Email: <%= @user.email %>
         <br>
         Graduation Year: <%= @user.grad_year %>
@@ -20,13 +24,15 @@
         <% else %>    
             <%= @user.enrolls.sum{ |p| p.section.course.course_credits}%>
         <% end %>
-    </h5>
+    </b>
+    </div>
+    </div>
  </section>
 </aside>
 
 
 
-<div class="col-md-4">
+<div class="col-md-4" >
     <br>
     <% if current_user.admin? %>
     <h5 style="text-align:center">Indexes</h5><br>
@@ -41,16 +47,24 @@
     <p style="text-align:center"><%= link_to "Student Enrollment Index", controller: "enrolls", action: "index" %></p>
     <p style="text-align:center"><%= link_to "Course Requirement Index", controller: "course_requirements", action: "index" %></p>
     <p style="text-align:center"><%= link_to "Student Interest Index", controller: "student_interests", action: "index" %></p>
+    <% else %>
+    <div class="tigerLogo"><%= image_tag("DePauw_Tigers_logo.png", :alt => "logo", :class => "tigerLogo") %></div>
+    <p style="text-align:center"> <a href="https://www.depauw.edu/" target="_blank">DePauw University</a></p>
+    <p style="text-align:center"> <a href="https://moodle.depauw.edu/" target="_blank">Moodle</a></p>
+    <p style="text-align:center"> <a href="https://my.depauw.edu/e/portal/login.asp" target="_blank">e-Services</a></p>
     <%end%>
     
 </div>
 <div class="col-md-4">
     <br>
-    <h5 style="float:right">Edit Your Profile</h5><br><br>
-    <p style="float:right"><%= link_to "Profile Settings", edit_user_path(current_user) %></p> <br> <br>
-    <p style="float:right"><%= link_to "Adjust Courses", controller: "users", action: "enrollment" %></p> <br> <br>
+    <div class="card text-center">
+        <div class="card-header text-center">
+            <h5>Edit Your Profile</h5>
+        </div>
+    <p style="float:right"><%= link_to "Profile Settings", edit_user_path(current_user) %></p> 
+    <p style="float:right"><%= link_to "Adjust Courses", controller: "users", action: "enrollment" %></p>
     <p style="float:right"><%= link_to "Adjust Interests", controller: "users", action: "interested" %></p>
-
+    </div>
 </div>
 
 </div>
@@ -61,7 +75,7 @@
 <div class ="row">
     <h5>Your Courses</h5>
     <br>
-    <table style ="width:100%">
+    <table style ="width:100%" class="blueTable">
         <thead>
             <tr>
                 <th>Dep/number</th>

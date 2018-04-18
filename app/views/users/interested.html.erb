@@ -6,7 +6,7 @@
     <%= hidden_field_tag "user[interest_ids][]", nil %>
     <% @interest_order.each do |department, available| %>
     <br>
-        <table>
+        <table class="blueTable">
           <thead>
             <tr>
               <th colspan="2"style ="text-align:center"> <%= department[0] %></th>
@@ -20,8 +20,8 @@
       
         <% for interest in available %>
           <tr>
-            <td><%= label_tag dom_id(interest), interest.department.dep_full_name + ' ' + interest.interest_type %></td>
-            <td> <%= check_box_tag "user[interest_ids][]", interest.id, @user.interest_ids.include?(interest.id), id: dom_id(interest) %></td>
+            <td style="width: 0px"><%= label_tag dom_id(interest), interest.interest_name + ' ' + interest.interest_type, style: "text-align:center" %></td>
+            <td> <%= check_box_tag "user[interest_ids][]", interest.id, @user.interest_ids.include?(interest.id), id: dom_id(interest), style: "text-align:center" %></td>
           </tr>
         <% end %>
             

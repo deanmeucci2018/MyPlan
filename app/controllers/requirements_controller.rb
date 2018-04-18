@@ -5,7 +5,7 @@ class RequirementsController < ApplicationController
   # GET /requirements
   # GET /requirements.json
   def index
-    @requirements = Requirement.all
+    @requirements = Requirement.all.order(:requirement_name)
   end
 
   # GET /requirements/1
@@ -26,7 +26,7 @@ class RequirementsController < ApplicationController
     end
         #Creation of Table by Department for course selection
     @courses = Course.joins(:department).order(:course_number)
-    @course_group = @courses.group_by{ |c| [c.department_id]}
+    @course_group = @courses.group_by{ |c| [c.department.dep_short_name]}
     
     @requirement = Requirement.new
   end
@@ -43,7 +43,7 @@ class RequirementsController < ApplicationController
     end
     #Creation of Table by Department for course selection
     @courses = Course.joins(:department).order(:course_number)
-    @course_group = @courses.group_by{ |c| [c.department_id]}
+    @course_group = @courses.group_by{ |c| [c.department.dep_short_name]}
     
   end
 

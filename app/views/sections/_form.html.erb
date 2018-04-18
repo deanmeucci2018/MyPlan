@@ -47,7 +47,7 @@
 
   <div class="field">
     <%= form.label :course_name %>
-    <%= form.grouped_collection_select :course_id, Department.order(:dep_short_name), :courses, :dep_short_name, :id, :course_full_name, include_blank: true %>
+    <%= form.grouped_collection_select :course_id, Department.order(:dep_short_name), :courses_by_course_number, :dep_short_name, :id, :course_short_name, include_blank: true %>
   </div>
 
   <div class="actions">

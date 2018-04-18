@@ -17,43 +17,54 @@ input {
 }
 
 header{
-	background-image: none;
+	//background-image: url('modern-dark-texture-background.jpg');
 	background: #414d66;
-	height: 75px;
-	margin-bottom: 70px;
 
+	//height: 75px;
+	//margin-bottom: 70px;
+	margin:0px;
+	padding:0px;
 }
 
 
 #navlinks {
 	margin: 0; 
 	padding: 0.5em 3em;
-	background: red; 
+	//background: red; 
 	color: #FFF;
 	font-size: 20px;
 	list-style: none;
 	text-align: center;
 	
-}
+	  background: #A43916;
+  background: -webkit-linear-gradient(#bb6a50 0%, #ad4c2d 66%, #A43916 100%);
+  background: -moz-linear-gradient(#bb6a50 0%, #ad4c2d 66%, #A43916 100%);
+  background: -o-linear-gradient(#bb6a50 0%, #ad4c2d 66%, #A43916 100%);
+  background: linear-gradient(#bb6a50 0%, #ad4c2d 66%, #A43916 100%);
+  border-bottom: 2px solid #444444;
+	
+}	
 
 
-#content { border: #E0162B 2px solid; background-color: white;}
+//#content { border: #E0162B 2px solid; background-color: white;}
 
-#page-body { background-color: white;}
+//#page-body { background-color: white;}
 
 #main{
-    overflow:hidden;
-    padding-bottom: 0px;
+    overflow:auto; // was hidden 4/18/18
+    padding-top: 10px;
+    padding-bottom: 10px;
     margin-left: 10px;
     margin-right: 10px;
-
+//	margin-top: 50px //added 4/17
+	 //   padding-top: 10px; //added 4/17
 
 }
 
 #mainholder{
 	min-height: 100%;
 	width: 100%;
-//	margin-top: 10px;
+	margin-top: 70px;
 }
 
 
@@ -68,6 +79,7 @@ header{
 	font-weight: bold;
 	color: blue;
 	text-align:center;
+	
 }
 
 #navlinks_last li {

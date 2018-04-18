@@ -293,3 +293,46 @@ input {
     color: #fff;
 }
 
+//TABLES FOR USER VIEW
+table.blueTable thead {
+  background: #A43916;
+  background: -moz-linear-gradient(top, #bb6a50 0%, #ad4c2d 66%, #A43916 100%);
+  background: -webkit-linear-gradient(top, #bb6a50 0%, #ad4c2d 66%, #A43916 100%);
+  background: linear-gradient(to bottom, #bb6a50 0%, #ad4c2d 66%, #A43916 100%);
+  border-bottom: 2px solid #444444;
+}
+table.blueTable thead th {
+  font-size: 15px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align: center;
+  border-left: 2px solid #D0E4F5;
+}
+table.blueTable thead th:first-child {
+  border-left: none;
+}
+
+
+
+
+ul.twocolumns {
+    display: inline-block;
+}
+
+ul.twocolumns li {
+    float: left;
+    list-style: outside none none;
+    width: auto;
+    padding-right: 3em;
+    padding-left: 0.3em;
+    border: 2px solid #444444;
+}
+
+ul.twocolumns label {
+    display: inline-block;
+}
+
+ul.twocolumns input[type="checkbox"]{
+  display: inline-block;
+  width: auto;
+}
