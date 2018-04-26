@@ -11,70 +11,95 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :course_number %>
-    <%= form.number_field :course_number, id: :course_course_number %>
-  </div>
 
-  <div class="field">
-    <%= form.label :course_full_name %>
-    <%= form.text_field :course_full_name, id: :course_course_full_name %>
+  
+  
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+       <div class="field">
+          <%= form.label :Department %> 
+          <%= form.select :department_id, @options %>
+        </div>
+    </div>
+    <div class="col-md-2 mb-3">
+       <div class="field">
+          <%= form.label :course_number %>
+          <%= form.number_field :course_number, id: :course_course_number %>
+        </div>
+    </div>
+    <div class="col-md-6 mb-3">
+       <div class="field">
+            <%= form.label :course_full_name %>
+            <%= form.text_field :course_full_name, id: :course_course_full_name %>
+             <small id="course_course_full_name" class="form-text text-muted">All Capital Letters Preferred.</small>
+        </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :course_description %>
-    <%= form.text_area :course_description, id: :course_course_description %>
+  
+  <div class="form-row">
+    <div class="col-md-12 mb-3">
+       <div class="field">
+          <%= form.label :course_description %>
+          <%= form.text_area :course_description, id: :course_course_description %>
+        </div>
+    </div>
   </div>
-
-  <div class="field">
-    <%= form.label :course_credits %>
-    <%= form.text_field :course_credits, id: :course_course_credits %>
+  
+  <div class="form-row">
+    <div class="col-md-2 mb-3">
+       <div class="field">
+          <%= form.label :course_credits %>
+          <%= form.text_field :course_credits, id: :course_course_credits %>
+        </div>
+    </div>
   </div>
+  
+  
   <br>
   <p><b>Check all that apply</b></p>
-  
-  <div class="field" id="coursereqlabels">
-    <%= form.check_box :q_req, id: :course_q_req %>
-    <%= form.label :Quantitative_Req %>
+  <div class="form-row">
+    <div class="col-md-3 mb-3">
+        <div class="field" id="coursereqlabels">
+          <%= form.check_box :q_req, id: :course_q_req %>
+          <%= form.label :Quantitative_Req %>
+        </div>
+      
+        <div class="field"  id="coursereqlabels">
+          <%= form.check_box :w_req, id: :course_w_req %>    
+          <%= form.label :Writing_Req %>
+        </div>
+      
+        <div class="field"  id="coursereqlabels">
+          <%= form.check_box :s_req, id: :course_s_req %>
+          <%= form.label :Speech_Req %>
+        </div>
+      </div>
+
+    <div class="col-md-4 mb-3">
+      <div class="field"  id="coursereqlabels">
+        <%= form.check_box :ah_req, id: :course_ah_req %>    
+        <%= form.label :Arts_and_Humanitites_Req %>
+      </div>
+    
+      <div class="field"  id="coursereqlabels">
+        <%= form.check_box :l_req, id: :course_l_req %>
+        <%= form.label :Language_Req %>
+      </div>
+    
+      <div class="field"  id="coursereqlabels">
+        <%= form.check_box :sm_req, id: :course_sm_req %>
+            <%= form.label :Science_and_Math_Req %>
+      </div>
+    
+      <div class="field"  id="coursereqlabels">
+        <%= form.check_box :ss_req, id: :course_ss_req %>
+        <%= form.label :Social_Science_Req %>
+      </div>
+    </div>
   </div>
 
-  <div class="field"  id="coursereqlabels">
-    <%= form.check_box :w_req, id: :course_w_req %>    
-    <%= form.label :Writing_Req %>
-  </div>
 
-  <div class="field"  id="coursereqlabels">
-    <%= form.check_box :s_req, id: :course_s_req %>
-    <%= form.label :Speech_Req %>
-  </div>
-
-  <div class="field"  id="coursereqlabels">
-    <%= form.check_box :ah_req, id: :course_ah_req %>    
-    <%= form.label :Arts_and_Humanitites_Req %>
-  </div>
-
-  <div class="field"  id="coursereqlabels">
-    <%= form.check_box :l_req, id: :course_l_req %>
-    <%= form.label :Language_Req %>
-  </div>
-
-  <div class="field"  id="coursereqlabels">
-    <%= form.check_box :sm_req, id: :course_sm_req %>
-        <%= form.label :Science_and_Math_Req %>
-  </div>
-
-  <div class="field"  id="coursereqlabels">
-    <%= form.check_box :ss_req, id: :course_ss_req %>
-    <%= form.label :Social_Science_Req %>
-  </div>
-
-  <div class="field">
-    <%= form.label :Department %> 
-    <%= form.select :department_id, @options %>
-  </div>
-
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions" style="width:20%">
+    <%= form.submit "Create Course", class: "btn btn-primary" %>
   </div>
 <% end %>

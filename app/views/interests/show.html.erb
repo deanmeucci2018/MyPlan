@@ -1,5 +1,5 @@
 <div class="row">
-  <aside class="col-md-4">
+  <aside class="col-md-8">
     <section>
       <div class="card">
           <div class="card-header">
@@ -17,17 +17,22 @@
             <strong>Department:</strong>
             <%= @interest.department.dep_full_name %>
             </p>
+            <hr>
+            <p>
+            <strong>Description:</strong>
+             <%= @interest.description %>
+            </p>
           </div>
+            <div class="card-footer text-muted">
+              <% if current_user.admin? %>
+                <%= link_to 'Edit', edit_interest_path(@interest), class: "btn btn-primary"  %> |
+              <% end %>
+              <%= link_to 'Back', interests_path, class: "btn btn-primary"  %>
+            </div>
       </div>
     </section>
   </aside>
   
-  <aside class="col-md-4">
-    <section>
-      <div class="tigerLogo"><%= image_tag("DePauw_Tigers_logo.png", :alt => "logo", :class => "tigerLogo") %></div>
-      <p style="text-align:center"> <a href="hhttps://www.depauw.edu/academics/catalog/courses/" target="_blank">DePauw University</a></p>
-    </section>
-  </aside>
   
   <aside class="col-md-4">
     <section>
@@ -58,60 +63,6 @@
       </div>
     </section>
   </aside>
-  
+
 </div>
 
-<h3>
-  <strong> <%= @interest.interest_name %></strong>
-      <%= @interest.interest_type %>
-</h3>
-
-<p>
-  <strong>Total credits needed:</strong>
-  <%= @interest.total_credits_needed %>
-</p>
-
-<p>
-  <strong>Department:</strong>
-  <%= @interest.department.dep_full_name %>
-</p>
-
-<p>
-  <strong>Requirements:</strong>
-  
-
-  
-</p>
-
-
-
-<div id="accordion">
-  <% @interests_belonging.each do |requirement| %>
-    <div class="card text-center">
-      <div class="card-header" id="headingOne<%=requirement.id%>">
-        <h5 class="mb-0">
-          <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne<%=requirement.id%>" aria-expanded="false" aria-controls="collapseOne<%=requirement.id%>">
-                <h5 class="card-title"><strong><%= requirement.requirement_type%></strong></h5>
-                 <h6 class="card-subtitle mb-2 text-muted"> Courses Needed out of list: <%= requirement.courses_towards_requirement %></h6>
-
-          </button>
-        </h5>
-      </div>
-  
-      <div id="collapseOne<%=requirement.id%>" class="collapse" aria-labelledby="headingOne<%=requirement.id%>" data-parent="#accordion">
-        <div class="card-body">
-           <ul class="list-group list-group-flush">
-              <% requirement.course_requirements.each do |cr| %>
-                <li class="list-group-item" style="font-size:0.5em"><%= cr.course.department.dep_short_name + '' + cr.course.course_number.to_s + ' ~ ' + cr.course.course_full_name %></li>
-              <% end %>
-            </ul>
-        </div>
-      </div>
-    </div>
-  <% end %>
-</div>
-
-<% if current_user.admin? %>
-  <%= link_to 'Edit', edit_interest_path(@interest) %> |
-<% end %>
-<%= link_to 'Back', interests_path %>

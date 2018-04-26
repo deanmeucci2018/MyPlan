@@ -11,58 +11,60 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :requirement_name %>
-    <%= form.text_field :requirement_name, id: :requirement_requirement_name %>
-  </div>
 
-  <div class="field">
-    <%= form.label :requirement_type %>
-     <%= form.text_field :requirement_type, id: :requirement_requirement_type%>
-  </div>
+  
 
-  <div class="field">
-    <%= form.label :courses_towards_requirement %>
-    <%= form.text_field :courses_towards_requirement, id: :requirement_courses_towards_requirement %>
+<div class="form-row">
+    <div class="col-md-6 mb-3">
+        <div class="field">
+              <%= form.label :interest_name %>
+              <%= form.grouped_collection_select :interest_id, Department.order(:dep_short_name), :interests, :dep_short_name, :id, :interest_full_name, include_blank: false %>
+        </div>
+    </div>
+      <div class="col-md-6 mb-3">      
+        <div class="field">
+            <%= form.label :requirement_name %>
+            <%= form.text_field :requirement_name, id: :requirement_requirement_name %>
+             <small id="requirement_requirement_name" class="form-text text-muted">ShortName for Req Example: ECONMAJOR</small>
+        </div>
+    </div>
   </div>
   
-  <div class="field">
-    <%= form.label :interest_name %>
-    <%= form.grouped_collection_select :interest_id, Department.order(:dep_short_name), :interests, :dep_short_name, :id, :interest_full_name, include_blank: false %>
+<div class="form-row">
+    <div class="col-md-6 mb-3">
+        <div class="field">
+          <%= form.label :requirement_type %>
+          <%= form.text_field :requirement_type, id: :requirement_requirement_type%>
+          <small id="requirement_requirement_type" class="form-text text-muted">Example: "Core Courses"</small>
+        </div>
+    </div>
+      <div class="col-md-6 mb-3">      
+        <div class="field">
+          <%= form.label :courses_towards_requirement %>
+          <%= form.text_field :courses_towards_requirement, id: :requirement_courses_towards_requirement %>
+        </div>
+    </div>
   </div>
-  
+
 
   <h5>Select Required Courses For Specific Requirement in Interest</h5>
-  
-  
-  
-  
-  
   <%= hidden_field_tag "requirement[course_ids][]", nil %>
     <% @course_group.each do |department, available| %>
     
     <h5> <%= department[0] %> </h5>
       <ul  class="twocolumns">
-     
-        
-
         <% for course in available %>
-          
             <li> <%= check_box_tag "requirement[course_ids][]", course.id, requirement.course_ids.include?(course.id), id: dom_id(course), :class => 'twocolumns' %>
             <%= label_tag dom_id(course), course.department.dep_short_name + '' + course.course_number.to_s, :class => 'twocolumns' %></li>
-          
         <% end %>
-
       </ul>
-        
-
     <% end %>        
   
   
 
 
 <br>
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions" style="width:30%">
+    <%= form.submit "Create Requirement", class: "btn btn-primary" %>
   </div>
 <% end %>

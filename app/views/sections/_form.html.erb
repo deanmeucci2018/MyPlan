@@ -10,50 +10,64 @@
       </ul>
     </div>
   <% end %>
-  
-<div class = "form-style-2" style="margin-left:35%; margin-right:25%">
-  <div class="field" id="time">
-    <%= form.label :Section_Time %>
-    <%= form.time_select :start_time, id: :section_start_time %> - <%= form.time_select :end_time, id: :section_end_time %>
-  </div>
 
 
-  <div class="field">
-    <%= form.label :professor %>
-    <%= form.text_field :professor, id: :section_professor %>
-  </div>
-  <br>
-  <div class="field">
-    <%= form.label :section_letter %>
-    <%= form.text_field :section_letter, id: :section_section_letter %>
-  </div>
-  <br>
-  <div class="field">
-    <%= form.label :semester %>
-    <%= form.select(:semester, [['Fall', "Fall"], ['Winter', "Winter"], ['Spring', "Spring"], ['Summer', "Summer"]]) %>
-		<br>
-  </div>
-  <br>
-  <div class="field">
-    <%= form.label :Year %>
-    <%= form.number_field :section_year, id: :section_section_year %>
-  </div>
-  <br>
-  <div class="field">
-    <%= form.label :Days_Enter_by_abbreviation_MWF_TR %>
-    <%= form.text_field :section_days, id: :section_section_days %>
-  </div>
-  <br>
-
-  <div class="field">
-    <%= form.label :course_name %>
-    <%= form.grouped_collection_select :course_id, Department.order(:dep_short_name), :courses_by_course_number, :dep_short_name, :id, :course_short_name, include_blank: true %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+<div class="form-row">
+    <div class="col-md-4 mb-3">
+        <div class="field">
+          <%= form.label :course_name %>
+          <%= form.grouped_collection_select :course_id, Department.order(:dep_short_name), :courses_by_course_number, :dep_short_name, :id, :course_short_name, include_blank: true %>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">      
+        <div class="field">
+          <%= form.label :section_letter %>
+          <%= form.text_field :section_letter, id: :section_section_letter %>
+        </div>
+    </div>
+        <div class="col-md-4 mb-3">      
+        <div class="field">
+          <%= form.label :professor %>
+          <%= form.text_field :professor, id: :section_professor %>
+          <small id="section_professor" class="form-text text-muted">First and Last Name</small>
+        </div>
+    </div>
 </div>
+<div class="form-row">
+    <div class="col-md-6 mb-3">
+      <div class="field" id="time">
+        <%= form.label :Section_Time %>
+        <%= form.time_select :start_time, id: :section_start_time %> - <%= form.time_select :end_time, id: :section_end_time %>
+      </div>
+    </div>
+</div>
+<div class="form-row">
+    <div class="col-md-4 mb-3">
+       <div class="field">
+          <%= form.label :Year %>
+          <%= form.number_field :section_year, id: :section_section_year %>
+          <small id="section_section_year" class="form-text text-muted">Example: 2018</small>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+       <div class="field">
+          <%= form.label :semester %>
+          <%= form.select(:semester, [['Fall', "Fall"], ['Winter', "Winter"], ['Spring', "Spring"], ['Summer', "Summer"]]) %>
+        </div>
+    </div>
+    <div class="col-md-4 mb-3">
+       <div class="field">
+           <%= form.label :Days %>
+            <%= form.text_field :section_days, id: :section_section_days %>
+             <small id="section_section_days" class="form-text text-muted">Enter as MWF, TR, or any combination.</small>
+        </div>
+    </div>
+</div>
+
+  <div class="actions" style="width: 15%">
+    <%= form.submit "Create Section", class: "btn btn-primary" %>
+  </div>
+
 <% end %>
 
 

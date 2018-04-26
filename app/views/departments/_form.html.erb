@@ -11,17 +11,25 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :dep_short_name %>
-    <%= form.text_field :dep_short_name, id: :department_dep_short_name %>
+
+  
+  
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+        <div class="field">
+           <%= form.label :department_short_name %>
+            <%= form.text_field :dep_short_name, id: :department_dep_short_name %>
+        </div>
+    </div>
+      <div class="col-md-6 mb-3">      
+        <div class="field">
+          <%= form.label :department_full_name %>
+          <%= form.text_field :dep_full_name, id: :department_dep_full_name %>
+        </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :dep_full_name %>
-    <%= form.text_field :dep_full_name, id: :department_dep_full_name %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions" style="width:30%">
+    <%= form.submit "Create Department", class: "btn btn-primary" %>
   </div>
 <% end %>

@@ -11,27 +11,49 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :interest_name %>
-    <%= form.text_field :interest_name, id: :interest_interest_name %>
+ 
+  
+  <div class="form-row">
+    <div class="col-md-3 mb-3">
+        <div class="field">
+              <%= form.label :Department_of_Interest %>
+              <%= form.select :department_id, @options %>
+        </div>
+    </div>
+    <div class="col-md-6 mb-3">      
+        <div class="field">
+          <%= form.label :interest_name %>
+          <%= form.text_field :interest_name, id: :interest_interest_name %>
+          <small id="interest_interest_name" class="form-text text-muted">Name of Actual Interest</small>
+        </div>
+    </div>
+        <div class="col-md-2 mb-3">      
+        <div class="field">
+          <%= form.label :interest_type %>
+          <%= form.select(:interest_type, [['Major', "Major"], ['Minor', "Minor"], ['Fellowship', "Fellowship/Honors Program"]]) %>
+        </div>
+    </div>
+  </div>
+  
+  <div class="form-row">
+    <div class="col-md-12 mb-3">      
+      <div class="field">
+        <%= form.label :interest_description %>
+        <%= form.text_area :description, id: :interest_description %>
+      </div>
+    </div>
+  </div>
+  
+  <div class="form-row">
+    <div class="col-md-2 mb-3">      
+      <div class="field">
+        <%= form.label :total_credits_needed %>
+        <%= form.text_field :total_credits_needed, id: :interest_total_credits_needed %>
+      </div>
+    </div>
   </div>
 
-  <div class="field">
-    <%= form.label :interest_type %>
-    <%= form.select(:interest_type, [['Major', "Major"], ['Minor', "Minor"], ['Fellowship', "Fellowship/Honors Program"]]) %>
-  </div>
-
-  <div class="field">
-    <%= form.label :total_credits_needed %>
-    <%= form.text_field :total_credits_needed, id: :interest_total_credits_needed %>
-  </div>
-
-  <div class="field">
-    <%= form.label :dep_short_name %>
-    <%= form.select :department_id, @options %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
+  <div class="actions" style="width:20%">
+    <%= form.submit "Create Interest", class: "btn btn-primary" %>
   </div>
 <% end %>

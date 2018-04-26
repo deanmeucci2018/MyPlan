@@ -91,7 +91,7 @@ class InterestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def interest_params
-      params.require(:interest).permit(:interest_name, :interest_type, :total_credits_needed, :department_id)
+      params.require(:interest).permit(:interest_name, :interest_type, :total_credits_needed, :department_id, :description)
     end
     
     # Only allows admin CRUD   

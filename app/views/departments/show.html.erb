@@ -1,14 +1,49 @@
 
 
-<p>
-  <strong>Dep short name:</strong>
-  <%= @department.dep_short_name %>
-</p>
 
-<p>
-  <strong>Dep full name:</strong>
-  <%= @department.dep_full_name %>
-</p>
+  <h1><%= @department.dep_full_name %></h1>
+<table style ="width:100%" class="blueTable">
+        <thead>
+            <tr>
+                <th>Dep/number</th>
+                <th>Course</th>
+                <th>Credits</th>
+                <th>Competencies</th> 
+                <th>Area</th>
+            </tr>
+        </thead>
+<% @department.courses.each do |course| %>
 
+        <tr>
+            <td><%= course.department.dep_short_name + '' + course.course_number.to_s %></td>
+            <td><%= course.course_full_name.titleize %></td>
+            <td><%= course.course_credits %></td>
+            
+            <!-- This runs to check if the course is a competencies completion or not -->
+            <% if course.q_req == true %>
+                <td>Quantitative</td>
+            <% elsif course.w_req == true %>
+                <td>Writing</td>
+            <% elsif course.s_req == true %>
+                <td>Speech</td>
+            <% else %>
+                <td>None</td>
+            <% end %>
+            
+            <!-- This runs to check if the course is a area completion or not -->
+            <% if course.ss_req == true %>
+                <td>SS</td>
+            <% elsif course.ah_req == true %>
+                <td>AH</td>
+            <% elsif course.l_req == true %>
+                <td>L</td>
+            <% elsif course.sm_req == true %>
+                <td>SM</td>
+            <% else %>
+                <td>None</td>
+            <% end %>
+        </tr>
+<% end %>
+    </table>
 <%= link_to 'Edit', edit_department_path(@department) %> |
 <%= link_to 'Back', departments_path %>
