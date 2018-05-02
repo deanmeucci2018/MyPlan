@@ -1,144 +1,35 @@
 <h1 style = "text-align: center">GAMEPLAN</h1>
-<table class = "blueTable">
-          <thead>
-            <tr>
-              <th colspan="4" style="text-align: center">Courses you should take for the 2018 Fall Semester</th>
-            </tr>
 
-        <tr>
-          <th>Course</th>
-          <th>Professor</th>
-          <th>Time</th>
-          <th>Days</th>
-        </tr>
-      </thead>
-
+<div class = "row">
+    <aside class="col-md-4">
+    <section>
+      <div id="accordion">
+        <% @userreqs2.each do |requirement| %>
+          <div class="card text-center">
+            <div class="card-header" id="headingOne<%=requirement.id%>">
+              <h5 class="mb-0">
+                <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne<%=requirement.id%>" aria-expanded="false" aria-controls="collapseOne<%=requirement.id%>">
+                      <h5 class="card-title"><strong><%= requirement.requirement_type%></strong></h5>
+                       <h6 class="card-subtitle mb-2 text-muted"> Courses Needed out of list: <%= requirement.courses_towards_requirement %></h6>
       
-
-          <tr>
-           <td>Course</td>
-           <td>Professor</td>
-           <td>Time</td>
-           <td>Days</td>
-          </tr>
-
-      </table>
-      
-      
-<div class ="row">
-    <h5>Your Courses</h5>
-    <br>
-    <table style ="width:100%" class="blueTable">
-        <thead>
-            <tr>
-                <th>Dep/number</th>
-                <th>Course</th>
-                <th>Credits</th>
-                <th>Professor</th>
-                <th>Semester</th>
-                <th>Time</th>
-                <th>Competencies</th> 
-                <th>Area</th>
-
-            </tr>
-        </thead>
-        <% @sects.each do |en| %>
-        <tr>
-            <td><%= en.section.course.department.dep_short_name + '' + en.section.course.course_number.to_s + '' + en.section.section_letter%></td>
-            <td><%= en.section.course.course_full_name.titleize %></td>
-            <td><%= en.section.course.course_credits %></td>
-            <td><%= en.section.course_id %></td>
-            <td><%= en.section.semester + ' ' + en.section.section_year.to_s %></td>
-            <td><%= en.section.start_time.strftime "%I:%M" %> - <%= en.section.end_time.strftime "%I:%M %p" %> <%= en.section.section_days %></td>
-            
-            <!-- This runs to check if the course is a competencies completion or not -->
-            <% if en.section.course.q_req == true %>
-                <td>Quantitative</td>
-            <% elsif en.section.course.w_req == true %>
-                <td>Writing</td>
-            <% elsif en.section.course.s_req == true %>
-                <td>Speech</td>
-            <% else %>
-                <td>None</td>
-            <% end %>
-            
-            <!-- This runs to check if the course is a area completion or not -->
-            <% if en.section.course.ss_req == true %>
-                <td>SS</td>
-            <% elsif en.section.course.ah_req == true %>
-                <td>AH</td>
-            <% elsif en.section.course.l_req == true %>
-                <td>L</td>
-            <% elsif en.section.course.sm_req == true %>
-                <td>SM</td>
-            <% else %>
-                <td>None</td>
-            <% end %>
-        </tr>
+                </button>
+              </h5>
+            </div>
+        
+            <div id="collapseOne<%=requirement.id%>" class="collapse" aria-labelledby="headingOne<%=requirement.id%>" data-parent="#accordion">
+              <div class="card-body">
+                 <ul class="list-group list-group-flush">
+                    <% requirement.course_requirements.each do |cr| %>
+                          <li class="list-group-item" style="font-size:0.5em;"><%= cr.course.department.dep_short_name + '' + cr.course.course_number.to_s + ' ~ ' + cr.course.course_full_name %></li>
+                    <% end %>
+                  </ul>
+              </div>
+            </div>
+          </div>
         <% end %>
-    </table>
-</div>
-
-
-<div class ="row">
-    <h5>All Sections</h5>
-    <br>
-    <table style ="width:100%" class="blueTable">
-        <thead>
-            <tr>
-                <th>Dep/number</th>
-                <th>Course</th>
-                <th>Credits</th>
-                <th>Professor</th>
-                <th>Semester</th>
-                <th>Time</th>
-
-
-            </tr>
-        </thead>
-        <% @sections_avail.all.each do |en| %>
-        <tr>
-            <td><%= en.course.department.dep_short_name + '' + en.course.course_number.to_s + '' + en.section_letter%></td>
-            <td><%= en.course.course_full_name.titleize %></td>
-            <td><%= en.course.course_credits %></td>
-            <td><%= en.professor %></td>
-            <td><%= en.semester + ' ' + en.section_year.to_s %></td>
-            <td><%= en.start_time.strftime "%I:%M" %> - <%= en.end_time.strftime "%I:%M %p" %> <%= en.section_days %></td>
-  
-        </tr>
-        <% end %>
-    </table>
-</div>
-
-
-<div class ="row">
-    <h5>My Sections</h5>
-    <br>
-    <table style ="width:100%" class="blueTable">
-        <thead>
-            <tr>
-                <th>Dep/number</th>
-                <th>Course</th>
-                <th>Credits</th>
-                <th>Professor</th>
-                <th>Semester</th>
-                <th>Time</th>
-
-
-            </tr>
-        </thead>
-        <% @test4.all.each do |en| %>
-        <tr>
-            <td><%= en.course.department.dep_short_name + '' + en.course.course_number.to_s + '' + en.section_letter%></td>
-            <td><%= en.course.course_full_name.titleize %></td>
-            <td><%= en.course.course_credits %></td>
-            <td><%= en.course_id %></td>
-            <td><%= en.semester + ' ' + en.section_year.to_s %></td>
-            <td><%= en.start_time.strftime "%I:%M" %> - <%= en.end_time.strftime "%I:%M %p" %> <%= en.section_days %></td>
-  
-        </tr>
-        <% end %>
-    </table>
+      </div>
+    </section>
+  </aside>
 </div>
 
 <div class ="row">
@@ -157,7 +48,7 @@
 
             </tr>
         </thead>
-        <% @test6.each do |en| %>
+        <% @sections_avail.each do |en| %>
                     <tr>
                         <td><%= en.course.department.dep_short_name + '' + en.course.course_number.to_s + '' + en.section_letter%></td>
                         <td><%= en.course.course_full_name.titleize %></td>

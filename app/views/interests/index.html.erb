@@ -1,6 +1,24 @@
 
 
 <h1>Interests</h1>
+
+  <nav >
+      <ul id ="enrollmentnav">
+    <% @int_order.each do |int, total| %>
+     <% if (int[0]) != @previoustop %>
+     
+        <li>
+          <%= link_to int[0], controller: "interests", action: "index", interest_type: int[0] %>
+        </li> 
+         <% @previoustop = (int[0]) %>
+       
+     <% end %>
+    <% end %>
+   </ul>
+  </nav>
+  
+
+
 <% if current_user.admin? %>
   <div style="float:right"><%= link_to 'New Interest', new_interest_path %></div>
 <%end%>

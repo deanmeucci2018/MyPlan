@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   
   def gameplan
     @user = User.find(params[:id])
-    #@sections_taken = Enroll.joins(:section, :user).where("user_id = :id",{id: params[:id]})
+        #@sections_taken = Enroll.joins(:section, :user).where("user_id = :id",{id: params[:id]})
         @sects = @user.enrolls.joins(section: :course)
        
         @test2 = Section.joins(:users, :course).where("(section_year = '2018' AND semester = 'Spring') OR user_id = :id",{id: params[:id]})
@@ -27,17 +27,25 @@ class UsersController < ApplicationController
         @sections_avail = Section.joins(:course).where("section_year = '2018' AND semester = 'Spring'")
         @testids = @test.pluck(:course_id)
         @test6 = @sections_avail.where.not(course_id: @testids)
+        
+        
         #GET INTERESTS FOR STUDENT
         @userreqs = Interest.joins(:users).where("user_id = :id",{id: params[:id]})
         @userreqsids = @userreqs.pluck(:interest_id)
+        
         #GET REQUIREMTENTS FOR STUDENT
         @userreqs2 = Requirement.where(interest_id: @userreqsids)
         @userreqsids2 = @userreqs2.pluck(:id)
+        
+        
         #GET SECTIONS AVAILABLE FOR REMAINING REQS
         @userreqs3 = CourseRequirement.joins(:course, :requirement).where(requirement_id: @userreqsids2)
         @userreqs3ids = @userreqs3.pluck(:course_id)
         @sects_avail_interests = @sections_avail.where(course_id: @userreqs3ids)
         @final = @sects_avail_interests.where.not(course_id: @testids)
+        
+        
+        
         #@userreqsids2 = @userreqs2.pluck(:courses.ids)
         #@userreqs3 = Course.courserequirement.joins(:requirements).where(requirement_id: @userreqsids2)
         #@sect2 = @sections_avail.joins(:users, :course).where.not("users.id = :id",{id: @user})
@@ -68,8 +76,6 @@ class UsersController < ApplicationController
     @section_first = Section.joins(:course).order(:section_year, :semester, :course_id)
     @section_order = @section_first.group_by {|t| [t.section_year, t.semester, t.course.department.dep_short_name] }
     
-    #@sectionyear = Section.find_by_section_year(params[:section_year])
-    #@sectionsemester = Section.find_by_semester(params[:semester])
     
    
       @section = Section.joins(:course).order(:section_year, :semester, :course_id).where("section_year = :section_year AND semester = :semester",{section_year: params[:section_year], semester: params[:semester]})

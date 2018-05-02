@@ -7,7 +7,9 @@ class InterestsController < ApplicationController
   # GET /interests
   # GET /interests.json
   def index
-    @interests = Interest.all.order(:department_id, :interest_type)
+    @int_first = Interest.joins(:department).order(:interest_type, :id)
+    @int_order = @int_first.group_by {|t| [t.interest_type.to_s, t.id] }
+    @interests = Interest.all.order(:department_id, :interest_type).where("interest_type = :interest_type",{interest_type: params[:interest_type]})
   end
 
   # GET /interests/1

@@ -6,7 +6,9 @@ class CoursesController < ApplicationController
   # GET /courses
   # GET /courses.json
   def index
-    @courses = Course.all.order(:department_id, :course_number)
+    @dep_first = Department.joins(:courses).order(:dep_short_name, :id)
+    @dep_order = @dep_first.group_by {|t| [t.dep_short_name.to_s, t.id] }
+    @courses = Course.all.order(:department_id, :course_number).where("department_id = :department_id",{department_id: params[:department_id]})
   end
 
   # GET /courses/1

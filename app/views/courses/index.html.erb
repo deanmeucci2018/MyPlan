@@ -1,6 +1,25 @@
 <!-- <p id="notice">%= notice %></p> -->
 
 <h1>Courses</h1>
+
+
+  <nav >
+      <ul id ="enrollmentnav">
+    <% @dep_order.each do |dep, course| %>
+     <% if (dep[0]) != @previoustop %>
+     
+        <li>
+          <%= link_to dep[0], controller: "courses", action: "index", department_id: dep[1] %>
+        </li> 
+         <% @previoustop = (dep[0]) %>
+       
+     <% end %>
+    <% end %>
+   </ul>
+  </nav>
+  
+
+
 <% if current_user.admin? %>
   <div style="float:right"><%= link_to 'New Course', new_course_path %></div>
 <%end%>
