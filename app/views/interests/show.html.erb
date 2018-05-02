@@ -53,7 +53,11 @@
               <div class="card-body">
                  <ul class="list-group list-group-flush">
                     <% requirement.course_requirements.each do |cr| %>
-                      <li class="list-group-item" style="font-size:0.5em"><%= cr.course.department.dep_short_name + '' + cr.course.course_number.to_s + ' ~ ' + cr.course.course_full_name %></li>
+                        <% if @testids.include?(cr.course.id) %>
+                            <li class="list-group-item" style="font-size:0.5em; text-decoration: line-through;"><%= cr.course.department.dep_short_name + '' + cr.course.course_number.to_s + ' ~ ' + cr.course.course_full_name %></li>
+                        <% else %>
+                            <li class="list-group-item" style="font-size:0.5em"><%= cr.course.department.dep_short_name + '' + cr.course.course_number.to_s + ' ~ ' + cr.course.course_full_name %></li>
+                        <% end %>
                     <% end %>
                   </ul>
               </div>

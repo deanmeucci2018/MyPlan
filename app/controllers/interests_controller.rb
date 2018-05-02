@@ -16,6 +16,8 @@ class InterestsController < ApplicationController
   # GET /interests/1.json
   def show
     @interests_belonging = Requirement.joins(:interest).where("interest_id = ?", params[:id])
+    @test = Section.joins(:users, :course).where("user_id = :id",{id: @current_user})
+    @testids = @test.pluck(:course_id)
   end
 
   # GET /interests/new
