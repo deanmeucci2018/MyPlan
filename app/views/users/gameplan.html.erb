@@ -23,3 +23,178 @@
           </tr>
 
       </table>
+      
+      
+<div class ="row">
+    <h5>Your Courses</h5>
+    <br>
+    <table style ="width:100%" class="blueTable">
+        <thead>
+            <tr>
+                <th>Dep/number</th>
+                <th>Course</th>
+                <th>Credits</th>
+                <th>Professor</th>
+                <th>Semester</th>
+                <th>Time</th>
+                <th>Competencies</th> 
+                <th>Area</th>
+
+            </tr>
+        </thead>
+        <% @sects.each do |en| %>
+        <tr>
+            <td><%= en.section.course.department.dep_short_name + '' + en.section.course.course_number.to_s + '' + en.section.section_letter%></td>
+            <td><%= en.section.course.course_full_name.titleize %></td>
+            <td><%= en.section.course.course_credits %></td>
+            <td><%= en.section.course_id %></td>
+            <td><%= en.section.semester + ' ' + en.section.section_year.to_s %></td>
+            <td><%= en.section.start_time.strftime "%I:%M" %> - <%= en.section.end_time.strftime "%I:%M %p" %> <%= en.section.section_days %></td>
+            
+            <!-- This runs to check if the course is a competencies completion or not -->
+            <% if en.section.course.q_req == true %>
+                <td>Quantitative</td>
+            <% elsif en.section.course.w_req == true %>
+                <td>Writing</td>
+            <% elsif en.section.course.s_req == true %>
+                <td>Speech</td>
+            <% else %>
+                <td>None</td>
+            <% end %>
+            
+            <!-- This runs to check if the course is a area completion or not -->
+            <% if en.section.course.ss_req == true %>
+                <td>SS</td>
+            <% elsif en.section.course.ah_req == true %>
+                <td>AH</td>
+            <% elsif en.section.course.l_req == true %>
+                <td>L</td>
+            <% elsif en.section.course.sm_req == true %>
+                <td>SM</td>
+            <% else %>
+                <td>None</td>
+            <% end %>
+        </tr>
+        <% end %>
+    </table>
+</div>
+
+
+<div class ="row">
+    <h5>All Sections</h5>
+    <br>
+    <table style ="width:100%" class="blueTable">
+        <thead>
+            <tr>
+                <th>Dep/number</th>
+                <th>Course</th>
+                <th>Credits</th>
+                <th>Professor</th>
+                <th>Semester</th>
+                <th>Time</th>
+
+
+            </tr>
+        </thead>
+        <% @sections_avail.all.each do |en| %>
+        <tr>
+            <td><%= en.course.department.dep_short_name + '' + en.course.course_number.to_s + '' + en.section_letter%></td>
+            <td><%= en.course.course_full_name.titleize %></td>
+            <td><%= en.course.course_credits %></td>
+            <td><%= en.professor %></td>
+            <td><%= en.semester + ' ' + en.section_year.to_s %></td>
+            <td><%= en.start_time.strftime "%I:%M" %> - <%= en.end_time.strftime "%I:%M %p" %> <%= en.section_days %></td>
+  
+        </tr>
+        <% end %>
+    </table>
+</div>
+
+
+<div class ="row">
+    <h5>My Sections</h5>
+    <br>
+    <table style ="width:100%" class="blueTable">
+        <thead>
+            <tr>
+                <th>Dep/number</th>
+                <th>Course</th>
+                <th>Credits</th>
+                <th>Professor</th>
+                <th>Semester</th>
+                <th>Time</th>
+
+
+            </tr>
+        </thead>
+        <% @test4.all.each do |en| %>
+        <tr>
+            <td><%= en.course.department.dep_short_name + '' + en.course.course_number.to_s + '' + en.section_letter%></td>
+            <td><%= en.course.course_full_name.titleize %></td>
+            <td><%= en.course.course_credits %></td>
+            <td><%= en.course_id %></td>
+            <td><%= en.semester + ' ' + en.section_year.to_s %></td>
+            <td><%= en.start_time.strftime "%I:%M" %> - <%= en.end_time.strftime "%I:%M %p" %> <%= en.section_days %></td>
+  
+        </tr>
+        <% end %>
+    </table>
+</div>
+
+<div class ="row">
+    <h5>SECTIONS NOT INCLUDING THOSE TAKEN</h5>
+    <br>
+    <table style ="width:100%" class="blueTable">
+        <thead>
+            <tr>
+                <th>Dep/number</th>
+                <th>Course</th>
+                <th>Credits</th>
+                <th>Professor</th>
+                <th>Semester</th>
+                <th>Time</th>
+
+
+            </tr>
+        </thead>
+        <% @test6.each do |en| %>
+                    <tr>
+                        <td><%= en.course.department.dep_short_name + '' + en.course.course_number.to_s + '' + en.section_letter%></td>
+                        <td><%= en.course.course_full_name.titleize %></td>
+                        <td><%= en.course.course_credits %></td>
+                        <td><%= en.course_id %></td>
+                        <td><%= en.semester + ' ' + en.section_year.to_s %></td>
+                        <td><%= en.start_time.strftime "%I:%M" %> - <%= en.end_time.strftime "%I:%M %p" %> <%= en.section_days %></td>
+                    </tr>
+        <% end %>
+    </table>
+</div>
+
+<div class ="row">
+    <h5>SECTIONS NOT INCLUDING THOSE TAKEN</h5>
+    <br>
+    <table style ="width:100%" class="blueTable">
+        <thead>
+            <tr>
+                <th>Dep/number</th>
+                <th>Course</th>
+                <th>Credits</th>
+                <th>Professor</th>
+                <th>Semester</th>
+                <th>Time</th>
+
+
+            </tr>
+        </thead>
+        <% @final.each do |en| %>
+                    <tr>
+                        <td><%= en.course.department.dep_short_name + '' + en.course.course_number.to_s + '' + en.section_letter%></td>
+                        <td><%= en.course.course_full_name.titleize %></td>
+                        <td><%= en.course.course_credits %></td>
+                        <td><%= en.course_id %></td>
+                        <td><%= en.semester + ' ' + en.section_year.to_s %></td>
+                        <td><%= en.start_time.strftime "%I:%M" %> - <%= en.end_time.strftime "%I:%M %p" %> <%= en.section_days %></td>
+                    </tr>
+        <% end %>
+    </table>
+</div>
